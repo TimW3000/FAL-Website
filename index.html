@@ -135,7 +135,16 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px">
 <sc-for list="{{ matches }}" as="m" hint-placeholder-count="3">
-<a class="card" href="mannschaft.html" style="background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; text-decoration: none; color: #0b192c; overflow: hidden; display: flex; flex-direction: column">
+<sc-if value="{{ m.fdId }}" hint-placeholder-val="{{ false }}">
+<div style="background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; overflow: hidden; display: flex; flex-direction: column">
+<a href="{{ m.href }}" style="background: #1e3e62; color: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; text-decoration: none">
+<span>{{ m.team }}</span><span style="color: #ffc800">{{ m.liga }}</span>
+</a>
+<div class="fal-fd" data-dc-keep data-compact data-id="{{ m.fdId }}" data-type="{{ m.fdType }}" data-title="Nächstes Spiel {{ m.team }}"></div>
+</div>
+</sc-if>
+<sc-if value="{{ m.noFd }}" hint-placeholder-val="{{ true }}">
+<a class="card" href="{{ m.href }}" style="background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; text-decoration: none; color: #0b192c; overflow: hidden; display: flex; flex-direction: column">
 <div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; font-weight: 700">
 <span>{{ m.team }}</span><span style="color: #ffc800">{{ m.liga }}</span>
 </div>
@@ -153,16 +162,10 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 <div style="{{ m.footStyle }}">{{ m.where }}</div>
 </a>
+</sc-if>
 </sc-for>
 </div>
 
-<div style="margin-top: 36px; background: #f2f5f9; border-radius: 20px; padding: 26px">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px">
-<h3 style="margin: 0; font-weight: 800; font-size: 22px; letter-spacing: -0.4px; color: #1e3e62">Alle Spiele des Vereins</h3>
-<span style="font-size: 13px; color: #51607a">Live von fussball.de</span>
-</div>
-<div class="fal-fd" data-dc-keep data-id="d48ef382-b58d-4732-b141-76d352c8281a" data-type="club-matches" data-title="Alle Spiele des Vereins"></div>
-</div>
 </section>
 
 <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 0">
@@ -321,11 +324,12 @@ var menu = [
 { label: 'Kontakt', href: 'kontakt.html' }
 ].map(function (m) { return { label: m.label, href: m.href, hasSub: !!m.groups, groups: m.groups || [] }; });
 var matches = [
-{ team: '1. Mannschaft', liga: 'Landesliga', date: 'So, 11.10.', time: '15:30', left: 'FV Möhringen', right: 'SpVgg F.A.L.', home: false },
-{ team: '2. Mannschaft', liga: 'Kreisliga A', date: 'Sa, 10.10.', time: '16:00', left: 'SpVgg F.A.L. 2', right: 'SG Herdwangen/Großschönach', home: true },
-{ team: '3. Mannschaft', liga: 'Kreisliga C', date: 'Sa, 10.10.', time: '17:00', left: 'TuS Immenstaad 3', right: 'SpVgg F.A.L. 3', home: false }
+{ key: 'erste', team: '1. Mannschaft', liga: 'Landesliga', date: 'So, 11.10.', time: '15:30', left: 'FV Möhringen', right: 'SpVgg F.A.L.', home: false },
+{ key: 'zweite', team: '2. Mannschaft', liga: 'Kreisliga A', date: 'Sa, 10.10.', time: '16:00', left: 'SpVgg F.A.L. 2', right: 'SG Herdwangen/Großschönach', home: true },
+{ key: 'dritte', team: '3. Mannschaft', liga: 'Kreisliga C', date: 'Sa, 10.10.', time: '17:00', left: 'TuS Immenstaad 3', right: 'SpVgg F.A.L. 3', home: false }
 ].map(function (m) {
-return { team: m.team, liga: m.liga, date: m.date, time: m.time, left: m.left, right: m.right,
+var fdn = ((window.FAL_FD || {})[m.key] || {}).next || null;
+return { href: 'mannschaft.html?team=' + m.key, fdId: fdn ? fdn.id : '', fdType: fdn ? fdn.type : '', noFd: !fdn, team: m.team, liga: m.liga, date: m.date, time: m.time, left: m.left, right: m.right,
 where: m.home ? 'Heimspiel' : 'Auswärtsspiel',
 footStyle: 'padding: 11px 20px; font-size: 13px; font-weight: 700; text-align: center; ' + (m.home ? 'background: #ffc800; color: #0b192c;' : 'background: #f2f5f9; color: #51607a;') };
 });

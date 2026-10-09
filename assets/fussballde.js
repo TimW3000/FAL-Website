@@ -14,7 +14,8 @@
     verein: { spielplan: { id: 'd48ef382-b58d-4732-b141-76d352c8281a', type: 'club-matches' } },
     erste: {
       spielplan: { id: '66e66124-5800-41f1-b90b-bc45a18bf2da', type: 'team-matches' },
-      tabelle: { id: 'e204eafe-02ad-4ac9-b2d3-281041282d25', type: 'table' }
+      tabelle: { id: 'e204eafe-02ad-4ac9-b2d3-281041282d25', type: 'table' },
+      next: { id: 'bf50801d-6396-4823-9e8c-a24694dfa090', type: 'next-match' }
     }
   };
 
@@ -38,12 +39,24 @@
     f.name = rid() + '_fussballde_widget-' + id;
     f.title = box.getAttribute('data-title') || 'fussball.de';
     f.loading = 'lazy';
-    f.setAttribute('style', 'display:block;width:100%;height:520px;border:0;border-radius:16px;background:#ffffff');
+    f.setAttribute('style', 'display:block;width:100%;border:0;background:#ffffff;' + (box.hasAttribute('data-compact') ? 'height:180px' : 'height:520px;border-radius:16px'));
     box.appendChild(f);
     box.setAttribute('data-fd-state', 'loaded');
   }
 
+  function consentCompact(box) {
+    box.setAttribute('data-fd-state', 'ask');
+    box.innerHTML =
+      '<div style="padding:22px 20px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center">' +
+      '<span style="font-size:13px;line-height:1.45;color:#51607a">Live von fussball.de. Beim Laden werden Daten wie deine IP-Adresse an fussball.de übertragen.</span>' +
+      '<span style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center">' +
+      '<button type="button" data-fd="once" style="border:none;background:#1e3e62;color:#ffffff;font-weight:800;font-size:14px;line-height:1;font-family:inherit;padding:11px 16px;border-radius:9px;cursor:pointer">Laden</button>' +
+      '<button type="button" data-fd="always" style="border:2px solid #1e3e62;background:transparent;color:#1e3e62;font-weight:800;font-size:14px;line-height:1;font-family:inherit;padding:9px 14px;border-radius:9px;cursor:pointer">Immer laden</button>' +
+      '</span></div>';
+  }
+
   function consent(box) {
+    if (box.hasAttribute('data-compact')) { consentCompact(box); return; }
     var title = box.getAttribute('data-title') || 'Spielplan';
     var label = box.getAttribute('data-type') === 'table' ? 'Tabelle laden' : 'Spielplan laden';
     box.setAttribute('data-fd-state', 'ask');
