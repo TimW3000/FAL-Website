@@ -128,7 +128,12 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <span style="font-size: 14px; color: #51607a; max-width: 420px">fussball.de-Widget. Die Widget-ID wird später im Backend einmal pro Mannschaft hinterlegt.</span>
 </sc-if>
 </div>
-<sc-if value="{{ showTable }}" hint-placeholder-val="{{ false }}">
+<sc-if value="{{ tabId }}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1 1 360px; min-width: 0">
+<div class="fal-fd" data-dc-keep data-id="{{ tabId }}" data-type="{{ tabType }}" data-title="Tabelle {{ sel.liga }}" style="width: 100%"></div>
+</div>
+</sc-if>
+<sc-if value="{{ showTablePlaceholder }}" hint-placeholder-val="{{ false }}">
 <div style="flex: 1 1 360px; min-width: 0; min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center">
 <span style="font-weight: 800; font-size: 18px; color: #1e3e62">Tabelle {{ sel.liga }}</span>
 <span style="font-size: 14px; color: #51607a">fussball.de-Widget</span>
@@ -243,12 +248,14 @@ return { label: t.label, on: on ? 'true' : 'false', style: pill + (on ? 'backgro
 }) };
 });
 var isVerein = sel.kind === 'verein';
-var fd = ((window.FAL_FD || {})[sel.id] || {}).spielplan || null;
+var fdSel = (window.FAL_FD || {})[sel.id] || {};
+var fd = fdSel.spielplan || null;
+var fdTab = sel.kind === 'liga' ? (fdSel.tabelle || null) : null;
 return Object.assign(base, { groups: groups, sel: sel,
 planTitle: isVerein ? 'Vereinsspielplan: alle Spiele aller Mannschaften' : (sel.kind === 'turnier' ? 'Turniertermine ' + sel.name : 'Spielplan ' + sel.name),
 fdId: fd ? fd.id : '', fdType: fd ? fd.type : '', noFd: !fd,
 planStyle: 'flex: ' + (sel.kind === 'liga' ? '1.4 1 480px' : '1 1 100%') + '; min-width: 0; ' + (fd ? '' : 'min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center'),
-showTable: sel.kind === 'liga', isTurnier: sel.kind === 'turnier' });
+showTable: sel.kind === 'liga', tabId: fdTab ? fdTab.id : '', tabType: fdTab ? fdTab.type : '', showTablePlaceholder: sel.kind === 'liga' && !fdTab, isTurnier: sel.kind === 'turnier' });
 }
 }
 </script>
