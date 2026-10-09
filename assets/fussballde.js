@@ -11,6 +11,8 @@
   'use strict';
 
   window.FAL_FD = {
+    zweite: { next: { id: 'b3a69f45-9d87-495a-98ca-9ecd7410aa86', type: 'next-match' } },
+    dritte: { next: { id: '200ef7f7-825e-4835-a589-9b8c37cc3615', type: 'next-match' } },
     verein: { spielplan: { id: 'd48ef382-b58d-4732-b141-76d352c8281a', type: 'club-matches' } },
     erste: {
       spielplan: { id: '66e66124-5800-41f1-b90b-bc45a18bf2da', type: 'team-matches' },
