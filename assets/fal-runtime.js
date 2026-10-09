@@ -121,6 +121,12 @@
       if (!c) { parent.appendChild(n); continue; }
       if (!same(c, n)) { parent.replaceChild(n, c); continue; }
       if (n.nodeType === 3) { if (c.nodeValue !== n.nodeValue) { c.nodeValue = n.nodeValue; } continue; }
+      /* Fremde Inhalte (z. B. fussball.de-Widget) nicht anfassen, solange es derselbe Platz ist */
+      if (n.hasAttribute('data-dc-keep')) {
+        if (c.hasAttribute('data-dc-keep') && c.getAttribute('data-id') === n.getAttribute('data-id') && c.getAttribute('data-type') === n.getAttribute('data-type')) { continue; }
+        parent.replaceChild(n, c); continue;
+      }
+      if (c.hasAttribute('data-dc-keep')) { parent.replaceChild(n, c); continue; }
       patchAttrs(c, n);
       patchChildren(c, Array.prototype.slice.call(n.childNodes));
     }

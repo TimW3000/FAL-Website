@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/wappen.webp">
+<script src="assets/fussballde.js" defer></script>
 <script src="assets/fal-runtime.js" defer></script>
 </head>
 <body>
@@ -119,8 +120,13 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <h2 style="margin: 0 0 22px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>{{ sel.name }}</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 20px">
 <div style="{{ planStyle }}">
+<sc-if value="{{ fdId }}" hint-placeholder-val="{{ false }}">
+<div class="fal-fd" data-dc-keep data-id="{{ fdId }}" data-type="{{ fdType }}" data-title="{{ planTitle }}" style="width: 100%"></div>
+</sc-if>
+<sc-if value="{{ noFd }}" hint-placeholder-val="{{ true }}">
 <span style="font-weight: 800; font-size: 18px; color: #1e3e62">{{ planTitle }}</span>
 <span style="font-size: 14px; color: #51607a; max-width: 420px">fussball.de-Widget. Die Widget-ID wird später im Backend einmal pro Mannschaft hinterlegt.</span>
+</sc-if>
 </div>
 <sc-if value="{{ showTable }}" hint-placeholder-val="{{ false }}">
 <div style="flex: 1 1 360px; min-width: 0; min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center">
@@ -237,9 +243,11 @@ return { label: t.label, on: on ? 'true' : 'false', style: pill + (on ? 'backgro
 }) };
 });
 var isVerein = sel.kind === 'verein';
+var fd = ((window.FAL_FD || {})[sel.id] || {}).spielplan || null;
 return Object.assign(base, { groups: groups, sel: sel,
 planTitle: isVerein ? 'Vereinsspielplan: alle Spiele aller Mannschaften' : (sel.kind === 'turnier' ? 'Turniertermine ' + sel.name : 'Spielplan ' + sel.name),
-planStyle: 'flex: ' + (sel.kind === 'liga' ? '1.4 1 480px' : '1 1 100%') + '; min-width: 0; min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center',
+fdId: fd ? fd.id : '', fdType: fd ? fd.type : '', noFd: !fd,
+planStyle: 'flex: ' + (sel.kind === 'liga' ? '1.4 1 480px' : '1 1 100%') + '; min-width: 0; ' + (fd ? '' : 'min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center'),
 showTable: sel.kind === 'liga', isTurnier: sel.kind === 'turnier' });
 }
 }

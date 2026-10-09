@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/wappen.webp">
+<script src="assets/fussballde.js" defer></script>
 <script src="assets/fal-runtime.js" defer></script>
 </head>
 <body>
@@ -132,7 +133,10 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </sc-for>
 </div>
 
-<sc-if value="{{ showWidget }}" hint-placeholder-val="{{ true }}">
+<sc-if value="{{ fdId }}" hint-placeholder-val="{{ false }}">
+<div class="fal-fd" data-dc-keep data-id="{{ fdId }}" data-type="{{ fdType }}" data-title="{{ widgetTitle }}"></div>
+</sc-if>
+<sc-if value="{{ showPlaceholder }}" hint-placeholder-val="{{ true }}">
 <div class="swap" style="background: #f2f5f9; border-radius: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 36px; box-sizing: border-box; text-align: center">
 <span style="font-weight: 800; font-size: 20px; color: #1e3e62">{{ widgetTitle }}</span>
 <span style="font-size: 15px; color: #51607a; max-width: 480px">{{ widgetText }}</span>
@@ -324,6 +328,8 @@ var menu = [
 { label: 'Kontakt', href: 'kontakt.html' }
 ].map(function (m) { return { label: m.label, href: m.href, hasSub: !!m.groups, groups: m.groups || [],
 style: 'text-decoration: none; padding: 0 14px; display: flex; align-items: center; gap: 6px; ' + (m.current ? 'color: #1e3e62; box-shadow: inset 0 -3px 0 #ffc800;' : 'color: #0b192c;') }; });
+var fdTeam = (window.FAL_FD || {})[team.id] || {};
+var fd = (s.tab === 'spielplan' || s.tab === 'tabelle') ? fdTeam[s.tab] : null;
 var widgetTitle = s.tab === 'tabelle' ? 'Tabelle ' + team.liga : (team.ligaTeam ? 'Spielplan ' + team.name : 'Turniertermine');
 var widgetText = team.ligaTeam ? 'Hier sitzt auf der fertigen Seite das fussball.de-Widget und aktualisiert sich selbst.' : '[Turniere der AH als Liste, gepflegt im Backend.]';
 var dOpen = !!s.drawer;
@@ -336,7 +342,7 @@ iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cu
 });
 var drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px); background: #ffffff; z-index: 50; box-shadow: -20px 0 50px rgba(11,25,44,.25); display: flex; flex-direction: column; overflow-y: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear ' + (dOpen ? '0s; transform: none; visibility: visible;' : '.45s; transform: translateX(100%); visibility: hidden;');
 var overlayStyle = 'position: fixed; inset: 0; border: none; padding: 0; margin: 0; z-index: 45; background: rgba(11,25,44,.55); cursor: pointer; transition: opacity .35s, visibility 0s linear ' + (dOpen ? '0s; opacity: 1; visibility: visible;' : '.35s; opacity: 0; visibility: hidden;');
-return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, team: team, teams: teams, tabs: tabs, showWidget: s.tab === 'spielplan' || s.tab === 'tabelle', showTraining: s.tab === 'training', showKader: s.tab === 'kader', kader: kader, widgetTitle: widgetTitle, widgetText: widgetText };
+return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, team: team, teams: teams, tabs: tabs, showWidget: s.tab === 'spielplan' || s.tab === 'tabelle', fdId: fd ? fd.id : '', fdType: fd ? fd.type : '', showPlaceholder: (s.tab === 'spielplan' || s.tab === 'tabelle') && !fd, showTraining: s.tab === 'training', showKader: s.tab === 'kader', kader: kader, widgetTitle: widgetTitle, widgetText: widgetText };
 }
 }
 </script>
