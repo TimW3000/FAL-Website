@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/wappen.webp">
+<script src="assets/fussballde.js" defer></script>
 <script src="assets/fal-runtime.js" defer></script>
 </head>
 <body>
@@ -156,30 +157,11 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 
 <div style="margin-top: 36px; background: #f2f5f9; border-radius: 20px; padding: 26px">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 8px">
-<h3 style="margin: 0; font-weight: 800; font-size: 22px; letter-spacing: -0.4px; color: #1e3e62">Alle Spiele am Wochenende</h3>
-<div style="display: flex; gap: 6px; background: #ffffff; padding: 5px; border-radius: 999px">
-<sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
-<button type="button" aria-pressed="{{ f.on }}" onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }}</button>
-</sc-for>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px">
+<h3 style="margin: 0; font-weight: 800; font-size: 22px; letter-spacing: -0.4px; color: #1e3e62">Alle Spiele des Vereins</h3>
+<span style="font-size: 13px; color: #51607a">Live von fussball.de</span>
 </div>
-</div>
-<sc-for list="{{ days }}" as="d" hint-placeholder-count="3">
-<div style="padding-top: 18px">
-<span style="display: block; font-size: 14px; font-weight: 800; color: #51607a; padding: 0 0 8px">{{ d.label }}</span>
-<div style="display: flex; flex-direction: column; gap: 6px">
-<sc-for list="{{ d.games }}" as="g" hint-placeholder-count="3">
-<div style="background: #ffffff; border-radius: 12px; padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px">
-<span style="flex: none; width: 52px; font-weight: 800; font-size: 16px; color: #1e3e62">{{ g.time }}</span>
-<span style="flex: 1 1 170px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 14px">{{ g.cat }}</span><span style="font-size: 13px; color: #51607a">{{ g.liga }}</span></span>
-<span style="flex: 3 1 340px; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 15px"><span style="{{ g.homeStyle }}">{{ g.home }}</span><span style="color: #8a97ab">gegen</span><span style="{{ g.awayStyle }}">{{ g.away }}</span></span>
-<span style="{{ g.badgeStyle }}">{{ g.badge }}</span>
-</div>
-</sc-for>
-</div>
-</div>
-</sc-for>
-<p style="margin: 16px 0 0; font-size: 13px; color: #51607a">Quelle: fussball.de. Auf der fertigen Seite aktualisiert sich das automatisch.</p>
+<div class="fal-fd" data-dc-keep data-id="d48ef382-b58d-4732-b141-76d352c8281a" data-type="club-matches" data-title="Alle Spiele des Vereins"></div>
 </div>
 </section>
 
