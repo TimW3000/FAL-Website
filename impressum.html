@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Impressum und Datenschutz SpVgg F.A.L.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/wappen.webp">
+<script src="assets/fal-runtime.js" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/plus-jakarta-sans.woff2) format('woff2')}</style>
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1e3e62}a:hover{color:#0b192c}
+:focus-visible{outline:3px solid #ffc800;outline-offset:2px}
+.burger{display:none}
+@media (max-width: 960px){.desk-nav{display:none !important}.burger{display:flex !important}}
+.dd{position:relative;display:flex}
+.dd .panel{position:absolute;top:100%;left:0;min-width:250px;background:#ffffff;border-top:3px solid #ffc800;border-radius:0 0 14px 14px;box-shadow:0 22px 44px rgba(11,25,44,.18);padding:8px 0;display:flex;flex-direction:column;z-index:30;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease, transform .35s cubic-bezier(.2,.8,.2,1), visibility 0s linear .35s}
+.dd:hover .panel,.dd:focus-within .panel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.dd .caret{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.dd:hover .caret,.dd:focus-within .caret{transform:rotate(180deg)}
+.nl{transition:box-shadow .25s}.dd:hover .nl,.nl:hover{box-shadow:inset 0 -3px 0 #ffc800}
+.sub-a{transition:background-color .2s, padding-left .25s cubic-bezier(.2,.8,.2,1)}.sub-a:hover{background:#f2f5f9;padding-left:24px !important}
+.toc a{transition:color .2s, padding-left .2s}.toc a:hover{padding-left:6px;color:#0b192c}
+@keyframes swap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.swap{animation:swap .4s cubic-bezier(.2,.8,.2,1)}
+@media (prefers-reduced-motion: reduce){.dd .panel,.toc a{transition:none}.swap{animation:none}}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', sans-serif; color: #0b192c; background: #ffffff; min-width: 0">
+
+<header style="position: sticky; top: 0; z-index: 20; height: 88px; background: #ffffff; box-shadow: 0 2px 16px rgba(11,25,44,.1)">
+<div style="max-width: 1240px; height: 100%; margin: 0 auto; padding: 0 24px; display: flex; align-items: stretch; justify-content: space-between; gap: 24px">
+<a href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0b192c">
+<img src="assets/wappen.webp" alt="Wappen der SpVgg F.A.L." style="width: 50px; height: 56px; object-fit: contain">
+<span style="font-weight: 800; font-size: 21px; letter-spacing: -0.3px; color: #1e3e62">SpVgg F.A.L.</span>
+</a>
+<nav class="desk-nav" aria-label="Hauptmenü" style="display: flex; flex-wrap: wrap; align-items: stretch; font-weight: 700; font-size: 15px">
+<sc-for list="{{ menu }}" as="m" hint-placeholder-count="7">
+<div class="dd">
+<a class="nl" href="{{ m.href }}" style="{{ m.style }}">{{ m.label }}<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}"><span class="caret" aria-hidden="true" style="font-size: 11px">▾</span></sc-if></a>
+<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}">
+<div class="panel">
+<sc-for list="{{ m.groups }}" as="g" hint-placeholder-count="1">
+<span style="padding: 12px 18px 4px; font-size: 12px; font-weight: 800; color: #51607a">{{ g.title }}</span>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+<a class="sub-a" href="{{ it.href }}" style="padding: 10px 18px; color: #0b192c; text-decoration: none; font-weight: 600; font-size: 15px">{{ it.label }}</a>
+</sc-for>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</nav>
+<button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="{{ drawerOpenStr }}" onClick="{{ openDrawer }}" style="align-self: center; width: 48px; height: 48px; border-radius: 12px; border: none; background: transparent; color: #0b192c; cursor: pointer; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg></button>
+</div>
+</header>
+<button type="button" aria-label="Menü schließen" tabindex="-1" onClick="{{ closeDrawer }}" style="{{ overlayStyle }}"></button>
+<aside aria-label="Mobiles Menü" style="{{ drawerStyle }}">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #e3e9f1">
+<span style="display: flex; align-items: center; gap: 10px"><img src="assets/wappen.webp" alt="" style="width: 36px; height: 40px; object-fit: contain"><span style="font-weight: 800; font-size: 18px; color: #1e3e62">SpVgg F.A.L.</span></span>
+<button type="button" aria-label="Menü schließen" onClick="{{ closeDrawer }}" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #f2f5f9; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b192c" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<nav aria-label="Hauptmenü mobil" style="display: flex; flex-direction: column; padding: 8px 0">
+<sc-for list="{{ drawerMenu }}" as="m" hint-placeholder-count="7">
+<div style="border-bottom: 1px solid #eef2f7">
+<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}">
+<button type="button" aria-expanded="{{ m.subOpen }}" onClick="{{ m.toggleSub }}" style="width: 100%; background: none; border: none; font-family: inherit; font-size: 18px; font-weight: 800; color: #0b192c; text-align: left; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer">{{ m.label }}<span aria-hidden="true" style="{{ m.iconStyle }}">▾</span></button>
+<div style="{{ m.bodyStyle }}"><div style="overflow: hidden; min-height: 0"><div style="padding: 0 20px 14px; display: flex; flex-direction: column">
+<sc-for list="{{ m.groups }}" as="g" hint-placeholder-count="1">
+<span style="font-size: 12px; font-weight: 800; color: #51607a; padding: 8px 0 6px">{{ g.title }}</span>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+<a href="{{ it.href }}" style="padding: 10px 0 10px 14px; border-left: 3px solid #ffc800; margin-bottom: 4px; color: #0b192c; text-decoration: none; font-weight: 600; font-size: 16px">{{ it.label }}</a>
+</sc-for>
+</sc-for>
+</div></div></div>
+</sc-if>
+<sc-if value="{{ m.noSub }}" hint-placeholder-val="{{ true }}">
+<a href="{{ m.href }}" style="display: block; padding: 16px 20px; color: #0b192c; text-decoration: none; font-size: 18px; font-weight: 800">{{ m.label }}</a>
+</sc-if>
+</div>
+</sc-for>
+</nav>
+<div style="margin-top: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<a href="mitglied-werden.html" style="background: #ffc800; color: #0b192c; text-decoration: none; font-weight: 800; font-size: 16px; padding: 15px; border-radius: 10px; text-align: center">Mitglied werden</a>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener" style="color: #1e3e62; font-weight: 700; font-size: 15px; text-align: center; text-decoration: none; padding: 10px">Instagram</a>
+</div>
+</aside>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 48px 24px 0">
+<div role="tablist" aria-label="Rechtliches" style="display: inline-flex; gap: 6px; background: #f2f5f9; padding: 6px; border-radius: 999px">
+<sc-for list="{{ tabs }}" as="t" hint-placeholder-count="2">
+<button type="button" role="tab" aria-selected="{{ t.on }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</section>
+
+<sc-if value="{{ isImpressum }}" hint-placeholder-val="{{ true }}">
+<section class="swap" style="max-width: 860px; margin: 0 auto; padding: 36px 24px 0">
+<h1 style="margin: 0 0 26px; font-weight: 800; font-size: 44px; letter-spacing: -1px; color: #1e3e62">Impressum</h1>
+<dl style="margin: 0; display: flex; flex-direction: column">
+<sc-for list="{{ impressum }}" as="r" hint-placeholder-count="6">
+<div style="display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 0; border-bottom: 1px solid #e3e9f1">
+<dt style="flex: 0 0 240px; font-weight: 800; font-size: 15px; color: #51607a">{{ r.k }}</dt>
+<dd style="flex: 1 1 280px; margin: 0; font-size: 16px; font-weight: 600; line-height: 1.6">{{ r.v }}</dd>
+</div>
+</sc-for>
+</dl>
+</section>
+</sc-if>
+
+<sc-if value="{{ isDatenschutz }}" hint-placeholder-val="{{ false }}">
+<section class="swap" style="max-width: 1240px; margin: 0 auto; padding: 36px 24px 0; display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start">
+<nav class="toc" aria-label="Inhalt" style="flex: 0 1 260px; min-width: 0; background: #f2f5f9; border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-weight: 800; font-size: 14px; color: #51607a; margin-bottom: 8px">Inhalt</span>
+<sc-for list="{{ sections }}" as="d" hint-placeholder-count="7">
+<a href="{{ d.href }}" style="padding: 6px 0; font-size: 15px; font-weight: 700; color: #1e3e62; text-decoration: none">{{ d.title }}</a>
+</sc-for>
+</nav>
+<div style="flex: 1 1 520px; min-width: 0; max-width: 760px; display: flex; flex-direction: column; gap: 30px">
+<h1 style="margin: 0; font-weight: 800; font-size: 44px; letter-spacing: -1px; color: #1e3e62">Datenschutzerklärung</h1>
+<sc-for list="{{ sections }}" as="d" hint-placeholder-count="7">
+<div id="{{ d.id }}" style="display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 22px; letter-spacing: -0.4px"><span aria-hidden="true" style="width: 9px; height: 22px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>{{ d.title }}</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.75; color: #36465c">[Text aus dem Datenschutz-Generator.]</p>
+</div>
+</sc-for>
+</div>
+</section>
+</sc-if>
+
+<footer style="margin-top: 88px; background: #0b192c; color: #c3cfde">
+<div style="height: 6px; background: #ffc800"></div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 28px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px"><img src="assets/wappen.webp" alt="" style="width: 48px; height: 54px; object-fit: contain"><span style="font-weight: 800; font-size: 20px; color: #ffffff">SpVgg F.A.L.</span></div>
+<span style="font-size: 15px; line-height: 1.7">[Sportplatz, Straße Nr.]<br>[PLZ Ort]</span>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener" style="color: #ffc800; font-weight: 700; text-decoration: none; font-size: 15px">Instagram</a>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 800; color: #ffffff">Teams</span>
+<a href="mannschaft.html" style="color: #c3cfde; text-decoration: none">Aktive</a>
+<a href="jugend.html" style="color: #c3cfde; text-decoration: none">Jugend</a>
+<a href="spielplan.html" style="color: #c3cfde; text-decoration: none">Spielplan</a>
+<a href="news.html" style="color: #c3cfde; text-decoration: none">News</a>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 800; color: #ffffff">Verein</span>
+<a href="vorstand.html" style="color: #c3cfde; text-decoration: none">Vorstand</a>
+<a href="mitglied-werden.html" style="color: #c3cfde; text-decoration: none">Mitglied werden</a>
+<a href="sportplaetze.html" style="color: #c3cfde; text-decoration: none">Sportplätze &amp; Anfahrt</a>
+<a href="chronik.html" style="color: #c3cfde; text-decoration: none">Chronik</a>
+<a href="partner.html" style="color: #c3cfde; text-decoration: none">Partner</a>
+<a href="kontakt.html" style="color: #c3cfde; text-decoration: none">Kontakt</a>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 800; color: #ffffff">Rechtliches</span>
+<button type="button" onClick="{{ showImpressum }}" style="background: none; border: none; padding: 0; font: inherit; color: #c3cfde; text-align: left; cursor: pointer">Impressum</button>
+<button type="button" onClick="{{ showDatenschutz }}" style="background: none; border: none; padding: 0; font: inherit; color: #c3cfde; text-align: left; cursor: pointer">Datenschutz</button>
+</div>
+</div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 28px; border-top: 1px solid #1e3e62; font-size: 13px; color: #8aa2c2">© 2026 SpVgg F.A.L. · #HejaFAL
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { tab: 'impressum', drawer: false, drawerSub: null };
+}
+renderVals() {
+var s = this.state;
+var self = this;
+var CUR = '';
+var menu = [
+{ label: 'Aktive', href: 'mannschaft.html', groups: [
+{ title: 'Herren', items: [{ label: '1. Mannschaft', href: 'mannschaft.html?team=erste' }, { label: '2. Mannschaft', href: 'mannschaft.html?team=zweite' }, { label: '3. Mannschaft', href: 'mannschaft.html?team=dritte' }, { label: 'Alte Herren', href: 'mannschaft.html?team=ah' }] }
+] },
+{ label: 'Jugend', href: 'jugend.html', groups: [
+{ title: 'SG F.A.L.', items: [{ label: 'A-Jugend', href: 'jugend.html?open=a' }, { label: 'B-Jugend', href: 'jugend.html?open=b' }, { label: 'C-Jugend', href: 'jugend.html?open=c' }] },
+{ title: 'SpVgg F.A.L.', items: [{ label: 'D-Jugend', href: 'jugend.html?open=d' }, { label: 'E-Jugend', href: 'jugend.html?open=e' }] }
+] },
+{ label: 'Spielplan', href: 'spielplan.html' },
+{ label: 'News', href: 'news.html' },
+{ label: 'Verein', href: 'vorstand.html', groups: [
+{ title: 'Über uns', items: [{ label: 'Vorstand', href: 'vorstand.html' }, { label: 'Mitglied werden', href: 'mitglied-werden.html' }, { label: 'Sportplätze & Anfahrt', href: 'sportplaetze.html' }, { label: 'Chronik', href: 'chronik.html' }] }
+] },
+{ label: 'Partner', href: 'partner.html' },
+{ label: 'Kontakt', href: 'kontakt.html' }
+].map(function (m) { var on = m.label === CUR; return { label: m.label, href: m.href, hasSub: !!m.groups, groups: m.groups || [],
+style: 'text-decoration: none; padding: 0 14px; display: flex; align-items: center; gap: 6px; ' + (on ? 'color: #1e3e62; box-shadow: inset 0 -3px 0 #ffc800;' : 'color: #0b192c;') }; });
+var dOpen = !!s.drawer;
+var drawerMenu = menu.map(function (m) {
+var so = s.drawerSub === m.label;
+return { label: m.label, href: m.href, hasSub: m.hasSub, noSub: !m.hasSub, groups: m.groups, subOpen: so ? 'true' : 'false',
+toggleSub: function () { self.setState({ drawerSub: so ? null : m.label }); },
+bodyStyle: 'display: grid; transition: grid-template-rows .4s cubic-bezier(.2,.8,.2,1); grid-template-rows: ' + (so ? '1fr;' : '0fr;'),
+iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cubic-bezier(.2,.8,.2,1); ' + (so ? 'transform: rotate(180deg);' : '') };
+});
+var base = { menu: menu, drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false',
+openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); },
+drawerStyle: 'position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px); background: #ffffff; z-index: 50; box-shadow: -20px 0 50px rgba(11,25,44,.25); display: flex; flex-direction: column; overflow-y: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear ' + (dOpen ? '0s; transform: none; visibility: visible;' : '.45s; transform: translateX(100%); visibility: hidden;'),
+overlayStyle: 'position: fixed; inset: 0; border: none; padding: 0; margin: 0; z-index: 45; background: rgba(11,25,44,.55); cursor: pointer; transition: opacity .35s, visibility 0s linear ' + (dOpen ? '0s; opacity: 1; visibility: visible;' : '.35s; opacity: 0; visibility: hidden;') };
+
+var pill = 'border: none; border-radius: 999px; padding: 11px 20px; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; transition: background-color .25s, color .25s; ';
+var tabs = [{ id: 'impressum', label: 'Impressum' }, { id: 'datenschutz', label: 'Datenschutz' }].map(function (t) {
+var on = s.tab === t.id;
+return { label: t.label, on: on ? 'true' : 'false', style: pill + (on ? 'background: #1e3e62; color: #ffffff;' : 'background: transparent; color: #51607a;'), pick: function () { self.setState({ tab: t.id }); } };
+});
+var impressum = [
+{ k: 'Verein', v: 'SpVgg F.A.L. e.V., Abteilung Fußball' },
+{ k: 'Anschrift', v: '[Straße Nr., PLZ Ort]' },
+{ k: 'Vertreten durch', v: '[Namen der vertretungsberechtigten Vorstandsmitglieder]' },
+{ k: 'Registergericht', v: '[Amtsgericht], [Vereinsregisternummer]' },
+{ k: 'Kontakt', v: '[E-Mail], [Telefon]' },
+{ k: 'Verantwortlich für den Inhalt', v: '[Name, Anschrift]' }
+];
+var sections = [
+{ id: 'ds-verantwortlich', title: 'Verantwortliche Stelle' },
+{ id: 'ds-hosting', title: 'Hosting' },
+{ id: 'ds-kontakt', title: 'Kontaktformular' },
+{ id: 'ds-fussballde', title: 'fussball.de-Widgets' },
+{ id: 'ds-karte', title: 'Kartendienst' },
+{ id: 'ds-instagram', title: 'Instagram' },
+{ id: 'ds-rechte', title: 'Deine Rechte' }
+].map(function (d) { return { id: d.id, title: d.title, href: '#' + d.id }; });
+return Object.assign(base, {
+showImpressum: function () { self.setState({ tab: 'impressum' }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} },
+showDatenschutz: function () { self.setState({ tab: 'datenschutz' }); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} },
+tabs: tabs, impressum: impressum, sections: sections, isImpressum: s.tab === 'impressum', isDatenschutz: s.tab === 'datenschutz' });
+}
+}
+</script>
+
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+</body>
+</html>

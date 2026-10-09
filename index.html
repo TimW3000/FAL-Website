@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Startseite SpVgg F.A.L.</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/wappen.webp">
+<script src="assets/fal-runtime.js" defer></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url(assets/plus-jakarta-sans.woff2) format('woff2')}</style>
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1e3e62}a:hover{color:#0b192c}
+:focus-visible{outline:3px solid #ffc800;outline-offset:2px}
+.burger{display:none}
+@media (max-width: 960px){.desk-nav{display:none !important}.burger{display:flex !important}}
+
+.dd{position:relative;display:flex}
+.dd .panel{position:absolute;top:100%;left:0;min-width:250px;background:#ffffff;border-top:3px solid #ffc800;border-radius:0 0 14px 14px;box-shadow:0 22px 44px rgba(11,25,44,.18);padding:8px 0;display:flex;flex-direction:column;z-index:30;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .25s ease, transform .35s cubic-bezier(.2,.8,.2,1), visibility 0s linear .35s}
+.dd:hover .panel,.dd:focus-within .panel{opacity:1;visibility:visible;transform:none;transition-delay:0s}
+.dd .caret{display:inline-block;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.dd:hover .caret,.dd:focus-within .caret{transform:rotate(180deg)}
+.nl{transition:box-shadow .25s}
+.dd:hover .nl,.nl:hover{box-shadow:inset 0 -3px 0 #ffc800}
+.sub-a{transition:background-color .2s, padding-left .25s cubic-bezier(.2,.8,.2,1)}.sub-a:hover{background:#f2f5f9;padding-left:24px !important}
+
+@keyframes fadeCycle{0%{opacity:0;transform:scale(1)}6%{opacity:1}33%{opacity:1}40%{opacity:0;transform:scale(1.08)}100%{opacity:0;transform:scale(1.08)}}
+.bg{position:absolute;inset:0;opacity:0;animation:fadeCycle 18s linear infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+.hint{animation:nudge 1.8s ease-in-out infinite}
+
+@supports (animation-timeline: scroll()) {
+.hdr{animation:hdrIn linear both;animation-timeline:scroll();animation-range:45vh 75vh}
+@keyframes hdrIn{from{background-color:rgba(255,255,255,0);box-shadow:0 0 0 rgba(0,0,0,0)}to{background-color:#ffffff;box-shadow:0 2px 16px rgba(11,25,44,.1)}}
+.nl,.burger{animation:nlIn linear both;animation-timeline:scroll();animation-range:45vh 75vh}
+@keyframes nlIn{from{color:#ffffff}to{color:#0b192c}}
+.hlogo{animation:logoIn linear both;animation-timeline:scroll();animation-range:30vh 60vh}
+@keyframes logoIn{from{opacity:0;transform:translateY(16px) scale(.5)}to{opacity:1;transform:none}}
+.big{animation:bigOut linear both;animation-timeline:scroll();animation-range:0vh 60vh}
+@keyframes bigOut{to{transform:translateY(-36vh) scale(.16);opacity:0}}
+}
+.card{transition:transform .3s ease, box-shadow .3s ease}.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(11,25,44,.18)}
+.zoom .ph{transition:transform .6s ease}.zoom:hover .ph{transform:scale(1.05)}
+.spon{transition:filter .3s, opacity .3s;filter:grayscale(1);opacity:.75}.spon:hover{filter:none;opacity:1}
+.btn{transition:transform .15s ease, filter .15s}.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+@media (prefers-reduced-motion: reduce){.bg{animation:none}.bg:first-child{opacity:1}.hint,.big,.hlogo,.hdr,.nl,.burger{animation:none !important}.card,.zoom .ph,.btn,.dd .panel{transition:none}}
+</style>
+</helmet>
+<div style="font-family: 'Plus Jakarta Sans', sans-serif; color: #0b192c; background: #ffffff; min-width: 0">
+
+<header class="hdr" style="position: sticky; top: 0; z-index: 20; height: 88px; margin-bottom: -88px; background: #ffffff; box-shadow: 0 2px 16px rgba(11,25,44,.1)">
+<div style="max-width: 1240px; height: 100%; margin: 0 auto; padding: 0 24px; display: flex; align-items: stretch; justify-content: space-between; gap: 24px">
+<a class="hlogo" href="#" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0b192c">
+<img src="assets/wappen.webp" alt="Wappen der SpVgg F.A.L." style="width: 50px; height: 56px; object-fit: contain">
+<span style="font-weight: 800; font-size: 21px; letter-spacing: -0.3px; color: #1e3e62">SpVgg F.A.L.</span>
+</a>
+<nav class="desk-nav" aria-label="Hauptmenü" style="display: flex; flex-wrap: wrap; align-items: stretch; font-weight: 700; font-size: 15px">
+<sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
+<div class="dd">
+<a class="nl" href="{{ m.href }}" style="color: #0b192c; text-decoration: none; padding: 0 14px; display: flex; align-items: center; gap: 6px">{{ m.label }}<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}"><span class="caret" aria-hidden="true" style="font-size: 11px">▾</span></sc-if></a>
+<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}">
+<div class="panel">
+<sc-for list="{{ m.groups }}" as="g" hint-placeholder-count="1">
+<span style="padding: 12px 18px 4px; font-size: 12px; font-weight: 800; color: #51607a">{{ g.title }}</span>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+<a class="sub-a" href="{{ it.href }}" style="padding: 10px 18px; color: #0b192c; text-decoration: none; font-weight: 600; font-size: 15px">{{ it.label }}</a>
+</sc-for>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</nav>
+<button class="burger" type="button" aria-label="Menü öffnen" aria-expanded="{{ drawerOpenStr }}" onClick="{{ openDrawer }}" style="align-self: center; width: 48px; height: 48px; border-radius: 12px; border: none; background: transparent; color: #0b192c; cursor: pointer; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"></path></svg></button>
+</div>
+</header>
+<button type="button" aria-label="Menü schließen" tabindex="-1" onClick="{{ closeDrawer }}" style="{{ overlayStyle }}"></button>
+<aside aria-label="Mobiles Menü" style="{{ drawerStyle }}">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid #e3e9f1">
+<span style="display: flex; align-items: center; gap: 10px"><img src="assets/wappen.webp" alt="" style="width: 36px; height: 40px; object-fit: contain"><span style="font-weight: 800; font-size: 18px; color: #1e3e62">SpVgg F.A.L.</span></span>
+<button type="button" aria-label="Menü schließen" onClick="{{ closeDrawer }}" style="width: 44px; height: 44px; border-radius: 50%; border: none; background: #f2f5f9; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b192c" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+</div>
+<nav aria-label="Hauptmenü mobil" style="display: flex; flex-direction: column; padding: 8px 0">
+<sc-for list="{{ drawerMenu }}" as="m" hint-placeholder-count="6">
+<div style="border-bottom: 1px solid #eef2f7">
+<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}">
+<button type="button" aria-expanded="{{ m.subOpen }}" onClick="{{ m.toggleSub }}" style="width: 100%; background: none; border: none; font-family: inherit; font-size: 18px; font-weight: 800; color: #0b192c; text-align: left; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer">{{ m.label }}<span aria-hidden="true" style="{{ m.iconStyle }}">▾</span></button>
+<div style="{{ m.bodyStyle }}"><div style="overflow: hidden; min-height: 0"><div style="padding: 0 20px 14px; display: flex; flex-direction: column">
+<sc-for list="{{ m.groups }}" as="g" hint-placeholder-count="1">
+<span style="font-size: 12px; font-weight: 800; color: #51607a; padding: 8px 0 6px">{{ g.title }}</span>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="3">
+<a href="{{ it.href }}" style="padding: 10px 0 10px 14px; border-left: 3px solid #ffc800; margin-bottom: 4px; color: #0b192c; text-decoration: none; font-weight: 600; font-size: 16px">{{ it.label }}</a>
+</sc-for>
+</sc-for>
+</div></div></div>
+</sc-if>
+<sc-if value="{{ m.noSub }}" hint-placeholder-val="{{ true }}">
+<a href="{{ m.href }}" style="display: block; padding: 16px 20px; color: #0b192c; text-decoration: none; font-size: 18px; font-weight: 800">{{ m.label }}</a>
+</sc-if>
+</div>
+</sc-for>
+</nav>
+<div style="margin-top: auto; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+<a href="mitglied-werden.html" style="background: #ffc800; color: #0b192c; text-decoration: none; font-weight: 800; font-size: 16px; padding: 15px; border-radius: 10px; text-align: center">Mitglied werden</a>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener" style="color: #1e3e62; font-weight: 700; font-size: 15px; text-align: center; text-decoration: none; padding: 10px">Instagram</a>
+</div>
+</aside>
+
+<section aria-label="SpVgg F.A.L." style="position: relative; height: 100vh; min-height: 640px; background: #0b192c; color: #ffffff; overflow: hidden">
+<div class="bg" style="animation-delay: 0s"><div style="position: absolute; inset: 0; background: #2a4d74; display: flex; align-items: flex-end; justify-content: flex-end; padding: 120px 28px; box-sizing: border-box; color: #9fb6d1; font-size: 14px; font-weight: 600">[Foto 1: 1. Mannschaft]</div></div>
+<div class="bg" style="animation-delay: 6s"><div style="position: absolute; inset: 0; background: #34587f; display: flex; align-items: flex-end; justify-content: flex-end; padding: 120px 28px; box-sizing: border-box; color: #b2c4d9; font-size: 14px; font-weight: 600">[Foto 2: Jugendtraining]</div></div>
+<div class="bg" style="animation-delay: 12s"><div style="position: absolute; inset: 0; background: #213f63; display: flex; align-items: flex-end; justify-content: flex-end; padding: 120px 28px; box-sizing: border-box; color: #9fb6d1; font-size: 14px; font-weight: 600">[Foto 3: Sportplatz oder Fans]</div></div>
+<div style="position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(11,25,44,.35) 0%, rgba(11,25,44,.8) 75%)"></div>
+
+<div class="big" style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; text-align: center; padding: 24px; box-sizing: border-box; transform-origin: 50% 0%">
+<img src="assets/wappen.webp" alt="" style="width: 110px; height: 123px; object-fit: contain"><h1 style="margin: 0; font-weight: 800; font-size: clamp(84px, 17vw, 260px); line-height: .9; letter-spacing: -6px">F.A.L.</h1>
+
+<p style="margin: 0; font-size: clamp(16px, 1.8vw, 22px); font-weight: 600; color: #dbe4ef">Frickingen, Altheim, Lippertsreute. Fußball seit 1952.</p>
+</div>
+
+<a class="hint" href="#start" aria-label="Zum Inhalt scrollen" style="position: absolute; left: 50%; bottom: 34px; margin-left: -24px; width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(255,255,255,.6); display: flex; align-items: center; justify-content: center; color: #ffffff; text-decoration: none">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+</a>
+</section>
+
+<section id="start" aria-label="Nächste Spiele" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px">
+<h2 style="margin: 0; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Nächste Spiele</h2>
+<a href="spielplan.html" style="font-weight: 700; font-size: 15px">Kompletter Vereinsspielplan</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px">
+<sc-for list="{{ matches }}" as="m" hint-placeholder-count="3">
+<a class="card" href="mannschaft.html" style="background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; text-decoration: none; color: #0b192c; overflow: hidden; display: flex; flex-direction: column">
+<div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; font-weight: 700">
+<span>{{ m.team }}</span><span style="color: #ffc800">{{ m.liga }}</span>
+</div>
+<div style="padding: 22px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1 1 0; text-align: center; font-weight: 700; font-size: 14px">
+<img src="assets/wappen.webp" alt="" style="width: 44px; height: 49px; object-fit: contain">{{ m.left }}
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 4px; flex: none">
+<span style="font-weight: 800; font-size: 22px; color: #1e3e62">{{ m.time }}</span>
+<span style="font-size: 13px; font-weight: 600; color: #51607a">{{ m.date }}</span>
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1 1 0; text-align: center; font-weight: 700; font-size: 14px">
+<div style="width: 44px; height: 49px; border-radius: 10px; background: #e8edf4"></div>{{ m.right }}
+</div>
+</div>
+<div style="{{ m.footStyle }}">{{ m.where }}</div>
+</a>
+</sc-for>
+</div>
+
+<div style="margin-top: 36px; background: #f2f5f9; border-radius: 20px; padding: 26px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 8px">
+<h3 style="margin: 0; font-weight: 800; font-size: 22px; letter-spacing: -0.4px; color: #1e3e62">Alle Spiele am Wochenende</h3>
+<div style="display: flex; gap: 6px; background: #ffffff; padding: 5px; border-radius: 999px">
+<sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{ f.on }}" onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }}</button>
+</sc-for>
+</div>
+</div>
+<sc-for list="{{ days }}" as="d" hint-placeholder-count="3">
+<div style="padding-top: 18px">
+<span style="display: block; font-size: 14px; font-weight: 800; color: #51607a; padding: 0 0 8px">{{ d.label }}</span>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{ d.games }}" as="g" hint-placeholder-count="3">
+<div style="background: #ffffff; border-radius: 12px; padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px">
+<span style="flex: none; width: 52px; font-weight: 800; font-size: 16px; color: #1e3e62">{{ g.time }}</span>
+<span style="flex: 1 1 170px; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 14px">{{ g.cat }}</span><span style="font-size: 13px; color: #51607a">{{ g.liga }}</span></span>
+<span style="flex: 3 1 340px; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 15px"><span style="{{ g.homeStyle }}">{{ g.home }}</span><span style="color: #8a97ab">gegen</span><span style="{{ g.awayStyle }}">{{ g.away }}</span></span>
+<span style="{{ g.badgeStyle }}">{{ g.badge }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<p style="margin: 16px 0 0; font-size: 13px; color: #51607a">Quelle: fussball.de. Auf der fertigen Seite aktualisiert sich das automatisch.</p>
+</div>
+</section>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px">
+<h2 style="margin: 0; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>News</h2>
+<a href="{{ newsLinkHref }}" style="font-weight: 700; font-size: 15px">{{ newsLinkLabel }}</a>
+</div>
+<sc-if value="{{ showNews }}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<a class="zoom" href="news-beitrag.html" style="flex: 3 1 520px; min-width: 0; text-decoration: none; color: #0b192c; display: flex; flex-direction: column; gap: 16px">
+<div style="height: 360px; border-radius: 16px; overflow: hidden; position: relative">
+<div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-weight: 600; font-size: 14px">[Großes Beitragsfoto]</div>
+<span style="position: absolute; left: 18px; top: 18px; background: #1e3e62; color: #ffffff; font-size: 13px; font-weight: 800; padding: 6px 14px; transform: skewX(-12deg)"><span style="display: inline-block; transform: skewX(12deg)">1. Mannschaft</span></span>
+</div>
+<span style="font-size: 14px; font-weight: 600; color: #51607a">[Datum]</span>
+<h3 style="margin: 0; font-weight: 800; font-size: 26px; line-height: 1.25; letter-spacing: -0.4px">[Überschrift des neuesten Beitrags]</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #51607a; max-width: 620px">[Anreißer, zwei Zeilen aus dem Beitrag.]</p>
+</a>
+<div style="flex: 2 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<sc-for list="{{ newsList }}" as="n" hint-placeholder-count="3">
+<a class="zoom" href="news-beitrag.html" style="display: flex; gap: 16px; text-decoration: none; color: #0b192c; padding-bottom: 18px; border-bottom: 1px solid #e3e9f1">
+<div style="flex: none; width: 128px; height: 96px; border-radius: 12px; overflow: hidden; position: relative"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef"></div></div>
+<div style="display: flex; flex-direction: column; gap: 6px; min-width: 0">
+<span style="{{ n.tagStyle }}">{{ n.cat }}</span>
+<h3 style="margin: 0; font-weight: 800; font-size: 17px; line-height: 1.35">[Überschrift des Beitrags]</h3>
+<span style="font-size: 13px; color: #51607a">[Datum]</span>
+</div>
+</a>
+</sc-for>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{ showInsta }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font-size: 16px; color: #51607a">Die neuesten Beiträge von unserem Instagram-Kanal.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px">
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+</div>
+</div>
+</sc-if>
+</section>
+
+<section style="position: relative; margin-top: 88px; background: #1e3e62; color: #ffffff; clip-path: polygon(0 60px, 100% 0, 100% calc(100% - 60px), 0 100%)">
+<div style="max-width: 1240px; margin: 0 auto; padding: 120px 24px 130px">
+<h2 style="margin: 0 0 28px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Unsere Teams</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
+<div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">1. Mannschaft</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Landesliga</span></div>
+</a>
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
+<div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">2. Mannschaft</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Kreisliga A</span></div>
+</a>
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
+<div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">3. Mannschaft</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Kreisliga C</span></div>
+</a>
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
+<div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">Alte Herren</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Turniere</span></div>
+</a>
+</div>
+<a class="zoom" href="jugend.html" style="margin-top: 16px; position: relative; min-height: 200px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #0b192c; display: flex; flex-wrap: wrap; align-items: center; background: #ffc800">
+<div style="flex: 1 1 360px; padding: 32px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-weight: 800; font-size: 30px; letter-spacing: -0.6px">Jugend von A bis E</span>
+<span style="font-size: 16px; line-height: 1.6; max-width: 480px">Acht Teams, als SG F.A.L. und SpVgg F.A.L. Trainingszeiten, Trainer und Probetraining auf einen Blick.</span>
+</div>
+<div style="flex: 1 1 360px; align-self: stretch; min-height: 200px; position: relative; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%)"><div class="ph" style="position: absolute; inset: 0; background: #e0b000; display: flex; align-items: center; justify-content: center; color: #4a3c00; font-size: 13px; font-weight: 700">[Foto Jugend]</div></div>
+</a>
+</div>
+</section>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 0">
+<h2 style="margin: 0 0 26px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Unsere Partner</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px">
+<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+</div>
+<div style="margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; background: #f2f5f9; border-radius: 14px; padding: 22px 26px">
+<span style="font-weight: 700; font-size: 17px">Sie möchten den Verein unterstützen?</span>
+<a class="btn" href="partner.html" style="background: #1e3e62; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 15px; padding: 13px 22px; border-radius: 10px">Partner werden</a>
+</div>
+</section>
+
+<footer style="margin-top: 88px; background: #0b192c; color: #c3cfde">
+<div style="height: 6px; background: #ffc800"></div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 28px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between">
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 12px">
+<img src="assets/wappen.webp" alt="" style="width: 48px; height: 54px; object-fit: contain">
+<span style="font-weight: 800; font-size: 20px; color: #ffffff">SpVgg F.A.L.</span>
+</div>
+<span style="font-size: 15px; line-height: 1.7">[Sportplatz, Straße Nr.]<br>[PLZ Ort]</span>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener" style="color: #ffc800; font-weight: 700; text-decoration: none; font-size: 15px">Instagram</a>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 800; color: #ffffff">Teams</span>
+<a href="mannschaft.html" style="color: #c3cfde; text-decoration: none">Aktive</a>
+<a href="jugend.html" style="color: #c3cfde; text-decoration: none">Jugend</a>
+<a href="spielplan.html" style="color: #c3cfde; text-decoration: none">Spielplan</a>
+<a href="news.html" style="color: #c3cfde; text-decoration: none">News</a>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 800; color: #ffffff">Verein</span>
+<a href="vorstand.html" style="color: #c3cfde; text-decoration: none">Vorstand</a>
+<a href="mitglied-werden.html" style="color: #c3cfde; text-decoration: none">Mitglied werden</a>
+<a href="sportplaetze.html" style="color: #c3cfde; text-decoration: none">Sportplätze &amp; Anfahrt</a>
+<a href="chronik.html" style="color: #c3cfde; text-decoration: none">Chronik</a>
+<a href="partner.html" style="color: #c3cfde; text-decoration: none">Partner</a>
+<a href="kontakt.html" style="color: #c3cfde; text-decoration: none">Kontakt</a>
+</div>
+<div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="font-weight: 800; color: #ffffff">Rechtliches</span>
+<a href="impressum.html" style="color: #c3cfde; text-decoration: none">Impressum</a>
+<a href="impressum.html?tab=datenschutz" style="color: #c3cfde; text-decoration: none">Datenschutz</a>
+</div>
+</div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 18px 24px 28px; border-top: 1px solid #1e3e62; font-size: 13px; color: #8aa2c2">© 2026 SpVgg F.A.L. · #HejaFAL</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"newsMode":{"editor":"enum","options":["Aktuelle News vorhanden","Lange keine News (Instagram)"],"default":"Aktuelle News vorhanden"},"$preview":{"width":1440,"height":4000}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { filter: 'alle', drawer: false, drawerSub: null };
+}
+renderVals() {
+var self = this;
+var s = this.state;
+var menu = [
+{ label: 'Aktive', href: 'mannschaft.html', groups: [
+{ title: 'Herren', items: [{ label: '1. Mannschaft', href: 'mannschaft.html?team=erste' }, { label: '2. Mannschaft', href: 'mannschaft.html?team=zweite' }, { label: '3. Mannschaft', href: 'mannschaft.html?team=dritte' }, { label: 'Alte Herren', href: 'mannschaft.html?team=ah' }] }
+] },
+{ label: 'Jugend', href: 'jugend.html', groups: [
+{ title: 'SG F.A.L.', items: [{ label: 'A-Jugend', href: 'jugend.html?open=a' }, { label: 'B-Jugend', href: 'jugend.html?open=b' }, { label: 'C-Jugend', href: 'jugend.html?open=c' }] },
+{ title: 'SpVgg F.A.L.', items: [{ label: 'D-Jugend', href: 'jugend.html?open=d' }, { label: 'E-Jugend', href: 'jugend.html?open=e' }] }
+] },
+{ label: 'Spielplan', href: 'spielplan.html' },
+{ label: 'News', href: 'news.html' },
+{ label: 'Verein', href: 'vorstand.html', groups: [
+{ title: 'Über uns', items: [{ label: 'Vorstand', href: 'vorstand.html' }, { label: 'Mitglied werden', href: 'mitglied-werden.html' }, { label: 'Sportplätze & Anfahrt', href: 'sportplaetze.html' }, { label: 'Chronik', href: 'chronik.html' }] }
+] },
+{ label: 'Partner', href: 'partner.html' },
+{ label: 'Kontakt', href: 'kontakt.html' }
+].map(function (m) { return { label: m.label, href: m.href, hasSub: !!m.groups, groups: m.groups || [] }; });
+var matches = [
+{ team: '1. Mannschaft', liga: 'Landesliga', date: 'So, 11.10.', time: '15:30', left: 'FV Möhringen', right: 'SpVgg F.A.L.', home: false },
+{ team: '2. Mannschaft', liga: 'Kreisliga A', date: 'Sa, 10.10.', time: '16:00', left: 'SpVgg F.A.L. 2', right: 'SG Herdwangen/Großschönach', home: true },
+{ team: '3. Mannschaft', liga: 'Kreisliga C', date: 'Sa, 10.10.', time: '17:00', left: 'TuS Immenstaad 3', right: 'SpVgg F.A.L. 3', home: false }
+].map(function (m) {
+return { team: m.team, liga: m.liga, date: m.date, time: m.time, left: m.left, right: m.right,
+where: m.home ? 'Heimspiel' : 'Auswärtsspiel',
+footStyle: 'padding: 11px 20px; font-size: 13px; font-weight: 700; text-align: center; ' + (m.home ? 'background: #ffc800; color: #0b192c;' : 'background: #f2f5f9; color: #51607a;') };
+});
+var games = [
+{ day: 'Freitag, 9. Oktober', time: '17:00', cat: 'D-Junioren', liga: 'Bezirksliga', home: 'SpVgg F.A.L. 2', away: 'SG Buchheim/Altheim/Thalheim' },
+{ day: 'Samstag, 10. Oktober', time: '09:45', cat: 'C-Junioren', liga: 'Bezirksliga', home: 'JFV Konstanz', away: 'SG F.A.L.' },
+{ day: 'Samstag, 10. Oktober', time: '12:30', cat: 'B-Junioren', liga: 'Bezirksliga', home: 'SG F.A.L.', away: '1. FC Rielasingen-Arlen' },
+{ day: 'Samstag, 10. Oktober', time: '13:00', cat: 'B-Junioren', liga: '1. Kreisliga (A)', home: 'SG Gallmannsweil (flex)', away: 'SG F.A.L. 2' },
+{ day: 'Samstag, 10. Oktober', time: '15:00', cat: 'D-Junioren', liga: 'Bezirksliga', home: 'SC Markdorf', away: 'SpVgg F.A.L.' },
+{ day: 'Samstag, 10. Oktober', time: '16:00', cat: 'Herren', liga: '1. Kreisliga (A)', home: 'SpVgg F.A.L. 2', away: 'SG Herdwangen/Großschönach' },
+{ day: 'Samstag, 10. Oktober', time: '17:00', cat: 'Herren', liga: '3. Kreisliga (C)', home: 'TuS Immenstaad 3 (Flex)', away: 'SpVgg F.A.L. 3' },
+{ day: 'Sonntag, 11. Oktober', time: '10:00', cat: 'E-Junioren', liga: 'Bezirksturnier', home: 'SV Denkingen', away: 'SpVgg F.A.L.', turnier: true },
+{ day: 'Sonntag, 11. Oktober', time: '10:23', cat: 'E-Junioren', liga: 'Bezirksturnier', home: 'SC Markdorf', away: 'SpVgg F.A.L.', turnier: true },
+{ day: 'Sonntag, 11. Oktober', time: '10:46', cat: 'E-Junioren', liga: 'Bezirksturnier', home: 'SpVgg F.A.L.', away: 'SG Illmensee', turnier: true },
+{ day: 'Sonntag, 11. Oktober', time: '12:00', cat: 'A-Junioren', liga: 'Bezirksliga', home: 'JFV Singen 2', away: 'SG F.A.L.' },
+{ day: 'Sonntag, 11. Oktober', time: '15:30', cat: 'Herren', liga: 'Landesliga', home: 'FV Möhringen', away: 'SpVgg F.A.L.' }
+];
+var own = function (n) { return n.indexOf('F.A.L.') !== -1; };
+var nameStyle = function (n) { return own(n) ? 'font-weight: 800; color: #1e3e62;' : 'font-weight: 600; color: #0b192c;'; };
+var shown = games.filter(function (g) {
+if (s.filter === 'aktive') return g.cat === 'Herren';
+if (s.filter === 'jugend') return g.cat !== 'Herren';
+return true;
+});
+var days = [];
+shown.forEach(function (g) {
+var last = days[days.length - 1];
+if (!last || last.label !== g.day) { last = { label: g.day, games: [] }; days.push(last); }
+var isHome = own(g.home);
+last.games.push({ time: g.time, cat: g.cat, liga: g.liga, home: g.home, away: g.away,
+homeStyle: nameStyle(g.home), awayStyle: nameStyle(g.away),
+badge: g.turnier ? 'Turnier' : (isHome ? 'Heim' : 'Auswärts'),
+badgeStyle: 'flex: none; padding: 5px 12px; border-radius: 999px; font-size: 12px; font-weight: 800; ' + (g.turnier ? 'background: #e3eaf3; color: #1e3e62;' : (isHome ? 'background: #ffc800; color: #0b192c;' : 'background: #f2f5f9; color: #51607a;')) });
+});
+var pill = 'border: none; border-radius: 999px; padding: 9px 16px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color .25s, color .25s; ';
+var filters = [{ id: 'alle', label: 'Alle' }, { id: 'aktive', label: 'Aktive' }, { id: 'jugend', label: 'Jugend' }].map(function (f) {
+var on = s.filter === f.id;
+return { label: f.label, on: on ? 'true' : 'false', style: pill + (on ? 'background: #1e3e62; color: #ffffff;' : 'background: transparent; color: #51607a;'),
+pick: function () { self.setState({ filter: f.id }); } };
+});
+var tagBase = 'align-self: flex-start; font-size: 12px; font-weight: 800; ';
+var newsList = [
+{ cat: 'Jugend', tagStyle: tagBase + 'color: #8a6d00;' },
+{ cat: 'Verein', tagStyle: tagBase + 'color: #1e3e62;' },
+{ cat: '2. Mannschaft', tagStyle: tagBase + 'color: #1e3e62;' }
+];
+var dOpen = !!s.drawer;
+var drawerMenu = menu.map(function (m) {
+var so = s.drawerSub === m.label;
+return { label: m.label, href: m.href, hasSub: m.hasSub, noSub: !m.hasSub, groups: m.groups, subOpen: so ? 'true' : 'false',
+toggleSub: function () { self.setState({ drawerSub: so ? null : m.label }); },
+bodyStyle: 'display: grid; transition: grid-template-rows .4s cubic-bezier(.2,.8,.2,1); grid-template-rows: ' + (so ? '1fr;' : '0fr;'),
+iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cubic-bezier(.2,.8,.2,1); ' + (so ? 'transform: rotate(180deg);' : '') };
+});
+var drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px); background: #ffffff; z-index: 50; box-shadow: -20px 0 50px rgba(11,25,44,.25); display: flex; flex-direction: column; overflow-y: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear ' + (dOpen ? '0s; transform: none; visibility: visible;' : '.45s; transform: translateX(100%); visibility: hidden;');
+var overlayStyle = 'position: fixed; inset: 0; border: none; padding: 0; margin: 0; z-index: 45; background: rgba(11,25,44,.55); cursor: pointer; transition: opacity .35s, visibility 0s linear ' + (dOpen ? '0s; opacity: 1; visibility: visible;' : '.35s; opacity: 0; visibility: hidden;');
+return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, matches: matches, newsList: newsList, days: days, filters: filters,
+showNews: (this.props.newsMode || 'Aktuelle News vorhanden') === 'Aktuelle News vorhanden',
+showInsta: (this.props.newsMode || 'Aktuelle News vorhanden') !== 'Aktuelle News vorhanden',
+newsLinkHref: (this.props.newsMode || 'Aktuelle News vorhanden') === 'Aktuelle News vorhanden' ? 'news.html' : '#',
+newsLinkLabel: (this.props.newsMode || 'Aktuelle News vorhanden') === 'Aktuelle News vorhanden' ? 'Alle News' : 'Auf Instagram folgen' };
+}
+}
+</script>
+
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+</body>
+</html>
