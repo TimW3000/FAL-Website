@@ -11,8 +11,16 @@
   'use strict';
 
   window.FAL_FD = {
-    zweite: { next: { id: 'b3a69f45-9d87-495a-98ca-9ecd7410aa86', type: 'next-match' } },
-    dritte: { next: { id: '200ef7f7-825e-4835-a589-9b8c37cc3615', type: 'next-match' } },
+    zweite: {
+      spielplan: { id: '86616c46-4361-4343-80fd-1fa30ed9c673', type: 'team-matches' },
+      tabelle: { id: '44fa1e51-4a99-4a7d-a5f4-e665f1e192f1', type: 'table' },
+      next: { id: 'b3a69f45-9d87-495a-98ca-9ecd7410aa86', type: 'next-match' }
+    },
+    dritte: {
+      spielplan: { id: '8cb2f66a-d07a-4ec6-a587-7688e2a0261c', type: 'team-matches' },
+      tabelle: { id: 'f619013b-2e7b-47b1-92f8-cebcf841ac1f', type: 'table' },
+      next: { id: '200ef7f7-825e-4835-a589-9b8c37cc3615', type: 'next-match' }
+    },
     verein: { spielplan: { id: 'd48ef382-b58d-4732-b141-76d352c8281a', type: 'club-matches' } },
     erste: {
       spielplan: { id: '66e66124-5800-41f1-b90b-bc45a18bf2da', type: 'team-matches' },
