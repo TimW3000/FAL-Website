@@ -113,6 +113,10 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 </div>
 </sc-for>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 12px; font-weight: 800; color: #51607a">Jugend</span>
+<button type="button" onClick="{{ pickVerein }}" style="border: none; border-radius: 10px; padding: 10px 14px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; background: #ffffff; color: #36465c">Im Vereinsspielplan</button>
+</div>
 </div>
 </section>
 
@@ -196,8 +200,7 @@ var menu = [
 { title: 'Herren', items: [{ label: '1. Mannschaft', href: 'mannschaft.html?team=erste' }, { label: '2. Mannschaft', href: 'mannschaft.html?team=zweite' }, { label: '3. Mannschaft', href: 'mannschaft.html?team=dritte' }, { label: 'Alte Herren', href: 'mannschaft.html?team=ah' }] }
 ] },
 { label: 'Jugend', href: 'jugend.html', groups: [
-{ title: 'SG F.A.L.', items: [{ label: 'A-Jugend', href: 'jugend.html?open=a' }, { label: 'B-Jugend', href: 'jugend.html?open=b' }, { label: 'C-Jugend', href: 'jugend.html?open=c' }] },
-{ title: 'SpVgg F.A.L.', items: [{ label: 'D-Jugend', href: 'jugend.html?open=d' }, { label: 'E-Jugend', href: 'jugend.html?open=e' }] }
+{ title: 'A- bis E-Jugend', items: [{ label: 'A-Jugend', href: 'jugend.html?open=a' }, { label: 'B-Jugend', href: 'jugend.html?open=b' }, { label: 'C-Jugend', href: 'jugend.html?open=c' }, { label: 'D-Jugend', href: 'jugend.html?open=d' }, { label: 'E-Jugend', href: 'jugend.html?open=e' }] }
 ] },
 { label: 'Spielplan', href: 'spielplan.html' },
 { label: 'News', href: 'news.html' },
@@ -226,17 +229,7 @@ var defs = [
 { title: 'Aktive', items: [
 { id: 'erste', label: '1.', name: '1. Mannschaft', liga: 'Landesliga', kind: 'liga' },
 { id: 'zweite', label: '2.', name: '2. Mannschaft', liga: 'Kreisliga A', kind: 'liga' },
-{ id: 'dritte', label: '3.', name: '3. Mannschaft', liga: 'Kreisliga C', kind: 'liga' }] },
-{ title: 'Jugend SG F.A.L.', items: [
-{ id: 'a', label: 'A', name: 'A-Jugend', liga: '[Liga]', kind: 'liga' },
-{ id: 'b1', label: 'B1', name: 'B-Jugend 1', liga: '[Liga]', kind: 'liga' },
-{ id: 'b2', label: 'B2', name: 'B-Jugend 2', liga: '[Liga]', kind: 'liga' },
-{ id: 'c', label: 'C', name: 'C-Jugend', liga: '[Liga]', kind: 'liga' }] },
-{ title: 'Jugend SpVgg F.A.L.', items: [
-{ id: 'd1', label: 'D1', name: 'D-Jugend 1', liga: '[Liga]', kind: 'liga' },
-{ id: 'd2', label: 'D2', name: 'D-Jugend 2', liga: '[Liga]', kind: 'liga' },
-{ id: 'e1', label: 'E1', name: 'E-Jugend 1', liga: '', kind: 'turnier' },
-{ id: 'e2', label: 'E2', name: 'E-Jugend 2', liga: '', kind: 'turnier' }] }
+{ id: 'dritte', label: '3.', name: '3. Mannschaft', liga: 'Kreisliga C', kind: 'liga' }] }
 ];
 var sel = null;
 var pill = 'border: none; border-radius: 10px; padding: 10px 14px; min-width: 44px; font-family: inherit; font-size: 14px; font-weight: 800; cursor: pointer; transition: background-color .25s, color .25s; ';
@@ -251,7 +244,7 @@ var isVerein = sel.kind === 'verein';
 var fdSel = (window.FAL_FD || {})[sel.id] || {};
 var fd = fdSel.spielplan || null;
 var fdTab = sel.kind === 'liga' ? (fdSel.tabelle || null) : null;
-return Object.assign(base, { groups: groups, sel: sel,
+return Object.assign(base, { groups: groups, sel: sel, pickVerein: function () { self.setState({ team: 'verein' }); },
 planTitle: isVerein ? 'Vereinsspielplan: alle Spiele aller Mannschaften' : (sel.kind === 'turnier' ? 'Turniertermine ' + sel.name : 'Spielplan ' + sel.name),
 fdId: fd ? fd.id : '', fdType: fd ? fd.type : '', noFd: !fd,
 planStyle: 'flex: ' + (sel.kind === 'liga' ? '1.4 1 480px' : '1 1 100%') + '; min-width: 0; ' + (fd ? '' : 'min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center'),
