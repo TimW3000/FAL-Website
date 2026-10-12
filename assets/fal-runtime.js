@@ -136,7 +136,7 @@
   function render() {
     var vals = instance.renderVals ? instance.renderVals() : {};
     var out = [];
-    kids(tpl, [instance.state, vals], out);
+    kids(tpl, [window.FAL_GLOBALS || {}, instance.state, vals], out);
     patchChildren(host, out);
   }
 

@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="assets/wappen.webp">
+<script src="assets/config.js" defer></script>
 <script src="assets/fussballde.js" defer></script>
 <script src="assets/fal-runtime.js" defer></script>
 </head>
@@ -45,7 +46,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <nav class="desk-nav" aria-label="Hauptmenü" style="display: flex; flex-wrap: wrap; align-items: stretch; font-weight: 700; font-size: 15px">
 <sc-for list="{{ menu }}" as="m" hint-placeholder-count="6">
 <div class="dd">
-<a class="nl" href="{{ m.href }}" style="{{ m.style }}">{{ m.label }}<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}"><span class="caret" aria-hidden="true" style="font-size: 11px">▾</span></sc-if></a>
+<a class="nl" href="{{ m.href }}" target="{{ m.target }}" rel="{{ m.rel }}" style="{{ m.style }}">{{ m.label }}<sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}"><span class="caret" aria-hidden="true" style="font-size: 11px">▾</span></sc-if></a>
 <sc-if value="{{ m.hasSub }}" hint-placeholder-val="{{ false }}">
 <div class="panel">
 <sc-for list="{{ m.groups }}" as="g" hint-placeholder-count="1">
@@ -83,7 +84,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div></div></div>
 </sc-if>
 <sc-if value="{{ m.noSub }}" hint-placeholder-val="{{ true }}">
-<a href="{{ m.href }}" style="display: block; padding: 16px 20px; color: #0b192c; text-decoration: none; font-size: 18px; font-weight: 800">{{ m.label }}</a>
+<a href="{{ m.href }}" target="{{ m.target }}" rel="{{ m.rel }}" style="display: block; padding: 16px 20px; color: #0b192c; text-decoration: none; font-size: 18px; font-weight: 800">{{ m.label }}</a>
 </sc-if>
 </div>
 </sc-for>
@@ -236,6 +237,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <a href="sportplaetze.html" style="color: #c3cfde; text-decoration: none">Sportplätze &amp; Anfahrt</a>
 <a href="chronik.html" style="color: #c3cfde; text-decoration: none">Chronik</a>
 <a href="partner.html" style="color: #c3cfde; text-decoration: none">Partner</a>
+<a href="{{ shopHref }}" target="{{ shopTarget }}" rel="{{ shopRel }}" style="color: #c3cfde; text-decoration: none">Teamshop ↗</a>
 <a href="kontakt.html" style="color: #c3cfde; text-decoration: none">Kontakt</a>
 </div>
 <div style="flex: 1 1 160px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
@@ -324,8 +326,9 @@ var menu = [
 { title: 'Über uns', items: [{ label: 'Vorstand', href: 'vorstand.html' }, { label: 'Mitglied werden', href: 'mitglied-werden.html' }, { label: 'Sportplätze & Anfahrt', href: 'sportplaetze.html' }, { label: 'Chronik', href: 'chronik.html' }] }
 ] },
 { label: 'Partner', href: 'partner.html' },
-{ label: 'Kontakt', href: 'kontakt.html' }
-].map(function (m) { return { label: m.label, href: m.href, hasSub: !!m.groups, groups: m.groups || [],
+{ label: 'Kontakt', href: 'kontakt.html' },
+{ label: 'Teamshop ↗', href: (window.FAL_CONFIG || {}).teamshop || '#', target: (window.FAL_CONFIG || {}).teamshop ? '_blank' : '' }
+].map(function (m) { return { label: m.label, href: m.href, target: m.target || '', rel: m.target ? 'noopener' : '', hasSub: !!m.groups, groups: m.groups || [],
 style: 'text-decoration: none; padding: 0 14px; display: flex; align-items: center; gap: 6px; ' + (m.current ? 'color: #1e3e62; box-shadow: inset 0 -3px 0 #ffc800;' : 'color: #0b192c;') }; });
 var fdTeam = (window.FAL_FD || {})[team.id] || {};
 var fd = (s.tab === 'spielplan' || s.tab === 'tabelle') ? fdTeam[s.tab] : null;
@@ -334,7 +337,7 @@ var widgetText = team.ligaTeam ? 'Hier sitzt auf der fertigen Seite das fussball
 var dOpen = !!s.drawer;
 var drawerMenu = menu.map(function (m) {
 var so = s.drawerSub === m.label;
-return { label: m.label, href: m.href, hasSub: m.hasSub, noSub: !m.hasSub, groups: m.groups, subOpen: so ? 'true' : 'false',
+return { label: m.label, href: m.href, target: m.target || '', rel: m.target ? 'noopener' : '', hasSub: m.hasSub, noSub: !m.hasSub, groups: m.groups, subOpen: so ? 'true' : 'false',
 toggleSub: function () { self.setState({ drawerSub: so ? null : m.label }); },
 bodyStyle: 'display: grid; transition: grid-template-rows .4s cubic-bezier(.2,.8,.2,1); grid-template-rows: ' + (so ? '1fr;' : '0fr;'),
 iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cubic-bezier(.2,.8,.2,1); ' + (so ? 'transform: rotate(180deg);' : '') };
