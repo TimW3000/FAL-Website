@@ -31,6 +31,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 .acc-inner{overflow:hidden;min-height:0}
 .acc-head{transition:background-color .25s}.acc-head:hover{background:#f7f9fc}
 .btn{transition:transform .15s ease, filter .15s}.btn:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.ycard{transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s}.ycard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(11,25,44,.16)}
 @media (prefers-reduced-motion: reduce){.acc-body,.dd .panel,.btn{transition:none}}
 </style>
 </helmet>
@@ -95,66 +96,135 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </aside>
 
 <section style="position: relative; background: #1e3e62; color: #ffffff; overflow: hidden">
-<div style="position: absolute; inset: 0; background: #2a4d74; display: flex; align-items: flex-start; justify-content: flex-end; padding: 24px; box-sizing: border-box; color: #9fb6d1; font-size: 14px; font-weight: 600">[Foto Jugendtraining]</div>
+<div style="position: absolute; inset: 0; background: #2a4d74; display: flex; align-items: flex-start; justify-content: flex-end; padding: 24px; box-sizing: border-box; color: #9fb6d1; font-size: 14px; font-weight: 600">{{ heroPhoto }}</div>
 <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(11,25,44,.92) 0%, rgba(11,25,44,.6) 50%, rgba(11,25,44,.1) 100%)"></div>
-<div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 72px 24px 130px; display: flex; flex-direction: column; gap: 20px">
-<span style="align-self: flex-start; background: #ffc800; color: #0b192c; font-weight: 800; font-size: 14px; padding: 8px 18px; transform: skewX(-12deg)"><span style="display: inline-block; transform: skewX(12deg)">A- bis E-Jugend</span></span>
-<h1 style="margin: 0; font-weight: 800; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.02; letter-spacing: -1.5px">Unsere Jugend</h1>
-<p style="margin: 0; max-width: 580px; font-size: 18px; line-height: 1.6; color: #dbe4ef">A- bis C-Jugend spielen als SG F.A.L. mit unseren Nachbarvereinen, D- und E-Jugend komplett bei der SpVgg F.A.L. Wähl deine Altersklasse für Training und Trainer. Alle Spiele stehen unten im Spielplan.</p>
+<div style="position: relative; max-width: 1240px; margin: 0 auto; padding: 56px 24px 130px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{ pills }}" as="t" hint-placeholder-count="6">
+<button type="button" aria-pressed="{{ t.on }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+</sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px">
+<span style="background: #ffc800; color: #0b192c; font-weight: 800; font-size: 14px; padding: 8px 18px; transform: skewX(-12deg)"><span style="display: inline-block; transform: skewX(12deg)">{{ heroTag }}</span></span>
+<sc-if value="{{ sel }}" hint-placeholder-val="{{ false }}">
+<span style="background: rgba(255,255,255,.14); color: #ffffff; font-weight: 800; font-size: 14px; padding: 8px 16px; border-radius: 999px">{{ sel.badge }}</span>
+</sc-if>
+</div>
+<h1 style="margin: 0; font-weight: 800; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.02; letter-spacing: -1.5px">{{ heroTitle }}</h1>
+<p style="margin: 0; max-width: 600px; font-size: 18px; line-height: 1.6; color: #dbe4ef">{{ heroText }}</p>
 </div>
 <div style="position: absolute; left: 0; right: 0; bottom: -1px; height: 80px; background: #ffffff; clip-path: polygon(0 100%, 100% 25%, 100% 100%)"></div>
 </section>
 
-<section style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 0; display: flex; flex-direction: column; gap: 14px">
-<sc-for list="{{ groups }}" as="g" hint-placeholder-count="5">
-<div style="{{ g.cardStyle }}">
-<button type="button" class="acc-head" aria-expanded="{{ g.openStr }}" onClick="{{ g.toggle }}" style="width: 100%; background: transparent; border: none; color: inherit; font-family: inherit; text-align: left; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; cursor: pointer">
-<span style="{{ g.letterStyle }}">{{ g.letter }}</span>
-<span style="display: flex; flex-direction: column; gap: 4px; flex: 1 1 240px; min-width: 0">
-<span style="font-weight: 800; font-size: 22px; letter-spacing: -0.4px">{{ g.name }}</span>
-<span style="font-size: 14px; line-height: 1.4; color: #51607a">{{ g.sub }}</span>
+<sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+<section style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 0">
+<h2 style="margin: 0 0 24px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Unsere Altersklassen</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 18px">
+<sc-for list="{{ cards }}" as="c" hint-placeholder-count="5">
+<button type="button" class="ycard" onClick="{{ c.pick }}" style="text-align: left; font-family: inherit; color: inherit; cursor: pointer; padding: 0; border: 1px solid #e3e9f1; background: #ffffff; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 8px 24px rgba(11,25,44,.08)">
+<span style="position: relative; display: block; height: 150px; background: linear-gradient(135deg, #1e3e62 0%, #2a4d74 100%)">
+<span style="position: absolute; right: 12px; top: 10px; font-size: 12px; font-weight: 600; color: #9fb6d1">[Teamfoto]</span>
+<span style="position: absolute; left: 18px; bottom: -22px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 30px; transform: skewX(-10deg); border-radius: 10px; background: #ffc800; color: #0b192c; box-shadow: 0 8px 18px rgba(11,25,44,.25)">{{ c.letter }}</span>
 </span>
-<span style="{{ g.badgeStyle }}">{{ g.badge }}</span>
-<span aria-hidden="true" style="{{ g.iconStyle }}">▾</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 34px 18px 20px; flex: 1">
+<span style="font-weight: 800; font-size: 22px; letter-spacing: -0.4px; color: #0b192c">{{ c.name }}</span>
+<span style="font-size: 14px; line-height: 1.45; color: #51607a">{{ c.liga }}</span>
+<span style="margin-top: auto; padding-top: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; background: #e3eaf3; color: #1e3e62">{{ c.badge }}</span>
+<span style="font-size: 14px; font-weight: 800; color: #1e3e62">Zum Team →</span>
+</span>
+</span>
 </button>
-<div class="acc-body" style="{{ g.bodyStyle }}">
-<div class="acc-inner">
-<div style="padding: 4px 24px 26px; display: flex; flex-wrap: wrap; gap: 16px">
-<div style="flex: 1 1 100%; min-width: 0; display: flex; flex-wrap: wrap; gap: 16px">
-<div style="flex: 1 1 240px; background: #f2f5f9; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 800; font-size: 16px; color: #1e3e62">Training</span>
-<span style="font-size: 15px; font-weight: 600">[Wochentag, Uhrzeit]</span>
-<span style="font-size: 15px; font-weight: 600">[Wochentag, Uhrzeit]</span>
-<span style="font-size: 13px; color: #51607a">[Trainingsort]</span>
+</sc-for>
 </div>
-<div style="flex: 1 1 240px; background: #1e3e62; color: #ffffff; border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
-<span style="font-weight: 800; font-size: 16px">Trainer</span>
-<span style="font-size: 15px; font-weight: 600">[Name Trainer]</span>
-<a href="#" style="font-size: 14px; font-weight: 700; color: #ffc800">[Telefon oder E-Mail]</a>
-</div>
-</div>
-</div>
-</div>
-</div>
+</section>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 0">
+<h2 style="margin: 0 0 24px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Jugendleitung</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 18px">
+<sc-for list="{{ leitung }}" as="p" hint-placeholder-count="2">
+<div style="flex: 1 1 280px; max-width: 400px; background: #f2f5f9; border-radius: 18px; padding: 22px; display: flex; align-items: center; gap: 18px">
+<span style="flex: none; width: 72px; height: 72px; border-radius: 50%; background: #ffffff; border: 3px solid #ffc800; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#9fb0c6" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
+<span style="font-size: 13px; font-weight: 800; color: #8a6d00">{{ p.role }}</span>
+<span style="font-weight: 800; font-size: 18px">{{ p.name }}</span>
+<a href="kontakt.html" style="font-size: 14px; font-weight: 700; color: #1e3e62">Kontakt</a>
+</span>
 </div>
 </sc-for>
+</div>
 </section>
 
-<section id="spiele" style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 0">
-<h2 style="margin: 0 0 8px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Spiele der Jugend</h2>
-<p style="margin: 0 0 20px; font-size: 15px; color: #51607a">Alle Spiele des Vereins, live von fussball.de.</p>
-<div class="fal-fd" data-dc-keep data-id="d48ef382-b58d-4732-b141-76d352c8281a" data-type="club-matches" data-title="Spiele der Jugend"></div>
+<section style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 0">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px">
+<h2 style="margin: 0; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>News aus der Jugend</h2>
+<a href="news.html" style="font-weight: 700; font-size: 15px">Alle News</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
+<sc-for list="{{ jnews }}" as="n" hint-placeholder-count="3">
+<a href="news-beitrag.html" class="ycard" style="text-decoration: none; color: #0b192c; display: flex; flex-direction: column; gap: 10px; border-radius: 16px">
+<span style="height: 180px; border-radius: 16px; background: #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Beitragsfoto]</span>
+<span style="font-size: 12px; font-weight: 800; color: #8a6d00">{{ n.tag }}</span>
+<span style="font-weight: 800; font-size: 18px; line-height: 1.3">[Überschrift des Beitrags]</span>
+<span style="font-size: 13px; color: #51607a">[Datum]</span>
+</a>
+</sc-for>
+</div>
 </section>
+</sc-if>
 
-<section style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 0">
+<sc-if value="{{ sel }}" hint-placeholder-val="{{ false }}">
+<section style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 0">
+<div style="display: flex; flex-wrap: wrap; gap: 18px">
+<div style="flex: 1 1 300px; min-width: 0; background: #f2f5f9; border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; color: #1e3e62"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1e3e62" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Training</span>
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: 4px">
+<div style="background: #ffffff; border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; gap: 12px; font-size: 15px"><span style="font-weight: 800">[Wochentag]</span><span>[Uhrzeit]</span></div>
+<div style="background: #ffffff; border-radius: 12px; padding: 12px 16px; display: flex; justify-content: space-between; gap: 12px; font-size: 15px"><span style="font-weight: 800">[Wochentag]</span><span>[Uhrzeit]</span></div>
+</div>
+<span style="font-size: 14px; color: #51607a">[Trainingsort]</span>
+</div>
+<div style="flex: 2 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+<span style="font-weight: 800; font-size: 18px; color: #1e3e62">Trainerteam</span>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<sc-for list="{{ trainer }}" as="p" hint-placeholder-count="2">
+<div style="flex: 1 1 220px; background: #1e3e62; color: #ffffff; border-radius: 18px; padding: 20px; display: flex; align-items: center; gap: 16px">
+<span style="flex: none; width: 64px; height: 64px; border-radius: 50%; background: #2a4d74; border: 3px solid #ffc800; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#9fb6d1" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
+<span style="font-size: 13px; font-weight: 800; color: #ffc800">{{ p.role }}</span>
+<span style="font-weight: 800; font-size: 17px">[Name]</span>
+<a href="kontakt.html" style="font-size: 14px; font-weight: 700; color: #c3cfde">Kontakt</a>
+</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+
+<div style="margin-top: 22px; height: clamp(220px, 34vw, 440px); border-radius: 20px; background: linear-gradient(135deg, #e3e9f1 0%, #f2f5f9 100%); display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 15px; font-weight: 700">[Teamfoto {{ sel.name }}]</div>
+
+<div style="margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px">
+<button type="button" onClick="{{ prev.pick }}" class="btn" style="border: 2px solid #e3e9f1; background: #ffffff; color: #1e3e62; font-family: inherit; font-weight: 800; font-size: 15px; padding: 12px 20px; border-radius: 12px; cursor: pointer">← {{ prev.label }}</button>
+<button type="button" onClick="{{ next.pick }}" class="btn" style="border: 2px solid #e3e9f1; background: #ffffff; color: #1e3e62; font-family: inherit; font-weight: 800; font-size: 15px; padding: 12px 20px; border-radius: 12px; cursor: pointer">{{ next.label }} →</button>
+</div>
+</section>
+</sc-if>
+
+<section style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 0">
 <div style="position: relative; overflow: hidden; background: #ffc800; border-radius: 18px; display: flex; flex-wrap: wrap; align-items: center">
 <div style="flex: 1 1 420px; padding: 36px; display: flex; flex-direction: column; gap: 10px">
-<h2 style="margin: 0; font-weight: 800; font-size: 32px; letter-spacing: -0.8px; color: #0b192c">Lust auf ein Probetraining?</h2>
+<h2 style="margin: 0; font-weight: 800; font-size: 32px; letter-spacing: -0.8px; color: #0b192c">{{ ctaTitle }}</h2>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; max-width: 480px">Einfach beim Trainer der passenden Altersklasse melden oder direkt bei unserer Jugendleitung.</p>
 <a class="btn" href="kontakt.html" style="align-self: flex-start; margin-top: 8px; background: #0b192c; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 15px; padding: 14px 24px; border-radius: 10px">Jugendleitung kontaktieren</a>
 </div>
 <div style="flex: 1 1 320px; align-self: stretch; min-height: 220px; position: relative; clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%); background: #e0b000; display: flex; align-items: center; justify-content: center; color: #4a3c00; font-size: 13px; font-weight: 700">[Foto Jugend]</div>
 </div>
+</section>
+
+<section id="spiele" style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 0">
+<h2 style="margin: 0 0 8px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Spiele der Jugend</h2>
+<p style="margin: 0 0 20px; font-size: 15px; color: #51607a">Alle Spiele des Vereins, live von fussball.de.</p>
+<div class="fal-fd" data-dc-keep data-id="d48ef382-b58d-4732-b141-76d352c8281a" data-type="club-matches" data-title="Spiele der Jugend"></div>
 </section>
 
 <footer style="margin-top: 88px; background: #0b192c; color: #c3cfde">
@@ -198,44 +268,41 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 class Component extends DCLogic {
 constructor(props) {
 super(props);
-this.state = { open: 'a', drawer: false, drawerSub: null };
+this.state = { open: '', drawer: false, drawerSub: null };
 }
 renderVals() {
 var s = this.state;
 var self = this;
-var own = function (n) { return n.indexOf('F.A.L.') !== -1; };
-var g = function (when, home, away, turnier) {
-var isHome = own(home);
-return { when: when, home: home, away: away,
-homeStyle: own(home) ? 'font-weight: 800; color: #1e3e62;' : 'font-weight: 600;',
-awayStyle: own(away) ? 'font-weight: 800; color: #1e3e62;' : 'font-weight: 600;',
-badge: turnier ? 'Turnier' : (isHome ? 'Heim' : 'Auswärts'),
-badgeStyle: 'flex: none; padding: 4px 11px; border-radius: 999px; font-size: 12px; font-weight: 800; ' + (turnier ? 'background: #e3eaf3; color: #1e3e62;' : (isHome ? 'background: #ffc800; color: #0b192c;' : 'background: #f2f5f9; color: #51607a;')) };
-};
 var defs = [
-{ id: 'a', letter: 'A', name: 'A-Jugend', badge: 'SG F.A.L.', sg: true, sub: 'Bezirksliga, SG mit Spfr. Owingen-Billafingen und FC 09 Überlingen',
-games: [g('So 11.10., 12:00', 'JFV Singen 2', 'SG F.A.L.')] },
-{ id: 'b', letter: 'B', name: 'B-Jugend', badge: 'SG F.A.L.', sg: true, sub: 'Bezirksliga und 1. Kreisliga, SG mit Spfr. Owingen-Billafingen',
-games: [g('Sa 10.10., 12:30', 'SG F.A.L.', '1. FC Rielasingen-Arlen'), g('Sa 10.10., 13:00', 'SG Gallmannsweil (flex)', 'SG F.A.L. 2')] },
-{ id: 'c', letter: 'C', name: 'C-Jugend', badge: 'SG F.A.L.', sg: true, sub: 'Bezirksliga, SG mit Spfr. Owingen-Billafingen',
-games: [g('Sa 10.10., 09:45', 'JFV Konstanz', 'SG F.A.L.')] },
-{ id: 'd', letter: 'D', name: 'D-Jugend', badge: 'SpVgg F.A.L.', sg: false, sub: 'Bezirksliga, komplett bei uns im Verein',
-games: [g('Fr 9.10., 17:00', 'SpVgg F.A.L. 2', 'SG Buchheim/Altheim/Thalheim'), g('Sa 10.10., 15:00', 'SC Markdorf', 'SpVgg F.A.L.')] },
-{ id: 'e', letter: 'E', name: 'E-Jugend', badge: 'SpVgg F.A.L.', sg: false, sub: 'Bezirksturniere, komplett bei uns im Verein',
-games: [g('So 11.10., 10:00', 'SV Denkingen', 'SpVgg F.A.L.', true), g('So 11.10., 10:23', 'SC Markdorf', 'SpVgg F.A.L.', true), g('So 11.10., 10:46', 'SpVgg F.A.L.', 'SG Illmensee', true)] }
+{ id: 'a', letter: 'A', name: 'A-Jugend', badge: 'SG F.A.L.', liga: 'Bezirksliga', text: 'Unsere A-Jugend spielt als SG F.A.L. gemeinsam mit den Spfr. Owingen-Billafingen und dem FC 09 Überlingen. [Ein, zwei Sätze zum Team.]' },
+{ id: 'b', letter: 'B', name: 'B-Jugend', badge: 'SG F.A.L.', liga: 'Bezirksliga und 1. Kreisliga', text: 'Die B-Jugend spielt als SG F.A.L. mit den Spfr. Owingen-Billafingen. [Ein, zwei Sätze zum Team.]' },
+{ id: 'c', letter: 'C', name: 'C-Jugend', badge: 'SG F.A.L.', liga: 'Bezirksliga', text: 'Die C-Jugend spielt als SG F.A.L. mit den Spfr. Owingen-Billafingen. [Ein, zwei Sätze zum Team.]' },
+{ id: 'd', letter: 'D', name: 'D-Jugend', badge: 'SpVgg F.A.L.', liga: 'Bezirksliga', text: 'Die D-Jugend spielt komplett bei uns im Verein. [Ein, zwei Sätze zum Team.]' },
+{ id: 'e', letter: 'E', name: 'E-Jugend', badge: 'SpVgg F.A.L.', liga: 'Bezirksturniere', text: 'Bei der E-Jugend steht der Spaß am Ball im Mittelpunkt, gespielt wird in Turnieren. [Ein, zwei Sätze zum Team.]' }
 ];
-var groups = defs.map(function (d) {
-var open = s.open === d.id;
-return {
-letter: d.letter, name: d.name, badge: d.badge, sub: d.sub, games: d.games, openStr: open ? 'true' : 'false',
-cardStyle: 'border-radius: 18px; overflow: hidden; background: #ffffff; transition: box-shadow .3s, border-color .3s; ' + (open ? 'border: 2px solid #1e3e62; box-shadow: 0 14px 34px rgba(11,25,44,.12);' : 'border: 2px solid #e3e9f1;'),
-letterStyle: 'flex: none; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 26px; transform: skewX(-10deg); border-radius: 8px; ' + 'background: #1e3e62; color: #ffc800;',
-badgeStyle: 'flex: none; padding: 7px 13px; border-radius: 999px; font-size: 13px; font-weight: 800; ' + 'background: #e3eaf3; color: #1e3e62;',
-iconStyle: 'flex: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: transform .4s cubic-bezier(.2,.8,.2,1), background-color .3s; ' + (open ? 'background: #1e3e62; color: #ffc800; transform: rotate(180deg);' : 'background: #f2f5f9; color: #1e3e62;'),
-bodyStyle: open ? 'grid-template-rows: 1fr; opacity: 1;' : 'grid-template-rows: 0fr; opacity: 0;',
-toggle: function () { self.setState({ open: open ? null : d.id }); }
-};
+var go = function (id) { self.setState({ open: id }); try { history.replaceState(null, '', id ? 'jugend.html?open=' + id : 'jugend.html'); } catch (e) {} window.scrollTo({ top: 0, behavior: 'smooth' }); };
+var idx = -1;
+defs.forEach(function (d, i) { if (d.id === s.open) idx = i; });
+var sel = idx >= 0 ? defs[idx] : null;
+var pill = 'border: none; border-radius: 999px; padding: 10px 18px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color .25s, color .25s; ';
+var pills = [{ id: '', label: 'Übersicht' }].concat(defs.map(function (d) { return { id: d.id, label: d.name }; })).map(function (p) {
+var on = (sel ? sel.id : '') === p.id;
+return { label: p.label, on: on ? 'true' : 'false', style: pill + (on ? 'background: #ffffff; color: #0b192c;' : 'background: rgba(255,255,255,.14); color: #ffffff;'), pick: function () { go(p.id); } };
 });
+var cards = defs.map(function (d) { return { letter: d.letter, name: d.name, liga: d.liga, badge: d.badge, pick: function () { go(d.id); } }; });
+var nb = function (i) { var d = defs[(i + defs.length) % defs.length]; return { label: d.name, pick: function () { go(d.id); } }; };
+var vals = {
+pills: pills, cards: cards, sel: sel, isOverview: !sel,
+heroTag: sel ? sel.liga : 'A- bis E-Jugend',
+heroTitle: sel ? sel.name : 'Unsere Jugend',
+heroText: sel ? sel.text : 'A- bis C-Jugend spielen als SG F.A.L. mit unseren Nachbarvereinen, D- und E-Jugend komplett bei der SpVgg F.A.L. Wähl deine Altersklasse für Training, Trainer und Teamfoto.',
+heroPhoto: sel ? '[Teamfoto ' + sel.name + ']' : '[Foto Jugendtraining]',
+ctaTitle: sel ? 'Probetraining in der ' + sel.name + '?' : 'Lust auf ein Probetraining?',
+leitung: [{ role: 'Jugendleiter', name: '[Vorname Nachname]' }, { role: 'Stellv. Jugendleiter', name: '[Vorname Nachname]' }],
+jnews: [{ tag: 'Jugend' }, { tag: 'Jugend' }, { tag: 'Jugend' }],
+trainer: [{ role: 'Trainer' }, { role: 'Co-Trainer' }],
+prev: nb(idx - 1), next: nb(idx + 1)
+};
 var menu = [
 { label: 'Aktive', href: 'mannschaft.html', groups: [
 { title: 'Herren', items: [{ label: '1. Mannschaft', href: 'mannschaft.html?team=erste' }, { label: '2. Mannschaft', href: 'mannschaft.html?team=zweite' }, { label: '3. Mannschaft', href: 'mannschaft.html?team=dritte' }, { label: 'Alte Herren', href: 'mannschaft.html?team=ah' }] }
@@ -263,7 +330,7 @@ iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cu
 });
 var drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px); background: #ffffff; z-index: 50; box-shadow: -20px 0 50px rgba(11,25,44,.25); display: flex; flex-direction: column; overflow-y: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear ' + (dOpen ? '0s; transform: none; visibility: visible;' : '.45s; transform: translateX(100%); visibility: hidden;');
 var overlayStyle = 'position: fixed; inset: 0; border: none; padding: 0; margin: 0; z-index: 45; background: rgba(11,25,44,.55); cursor: pointer; transition: opacity .35s, visibility 0s linear ' + (dOpen ? '0s; opacity: 1; visibility: visible;' : '.35s; opacity: 0; visibility: hidden;');
-return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, groups: groups };
+return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, pills: vals.pills, cards: vals.cards, sel: vals.sel, isOverview: vals.isOverview, heroTag: vals.heroTag, heroTitle: vals.heroTitle, heroText: vals.heroText, heroPhoto: vals.heroPhoto, ctaTitle: vals.ctaTitle, leitung: vals.leitung, jnews: vals.jnews, trainer: vals.trainer, prev: vals.prev, next: vals.next };
 }
 }
 </script>
