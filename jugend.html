@@ -202,7 +202,17 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 
 <sc-if value="{{ hasYw }}" hint-placeholder-val="{{ false }}">
-<div style="margin-top: 22px; display: flex; flex-direction: column; gap: 22px">
+<div style="margin-top: 22px; display: flex; flex-direction: column; gap: 16px">
+<sc-if value="{{ multi }}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{ ypills }}" as="t" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{ t.on }}" onClick="{{ t.pick }}" style="{{ t.style }}">{{ t.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{ ywEmpty }}" hint-placeholder-val="{{ false }}">
+<p style="margin: 0; font-size: 15px; color: #51607a">Für diese Mannschaft sind noch keine Spiele hinterlegt. Alle Spiele stehen unten im Vereinsspielplan.</p>
+</sc-if>
 <sc-for list="{{ yw }}" as="w" hint-placeholder-count="1">
 <div style="display: flex; flex-direction: column; gap: 12px">
 <sc-if value="{{ w.showLabel }}" hint-placeholder-val="{{ false }}">
@@ -294,7 +304,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 class Component extends DCLogic {
 constructor(props) {
 super(props);
-this.state = { open: '', drawer: false, drawerSub: null };
+this.state = { open: '', yteam: 0, drawer: false, drawerSub: null };
 }
 renderVals() {
 var s = this.state;
@@ -307,7 +317,7 @@ var defs = [
 { id: 'e', letter: 'E', name: 'E-Jugend', badge: 'SpVgg F.A.L.', liga: 'Bezirksturniere', text: 'Bei der E-Jugend steht der Spaß am Ball im Mittelpunkt, gespielt wird in Turnieren. [Ein, zwei Sätze zum Team.]' }
 ];
 var yteams = { a: [['a', 'A-Jugend']], b: [['b1', 'B-Jugend 1'], ['b2', 'B-Jugend 2']], c: [['c', 'C-Jugend']], d: [['d1', 'D-Jugend 1'], ['d2', 'D-Jugend 2']], e: [['e1', 'E-Jugend 1'], ['e2', 'E-Jugend 2']] };
-var go = function (id) { self.setState({ open: id }); try { history.replaceState(null, '', id ? 'jugend.html?open=' + id : 'jugend.html'); } catch (e) {} window.scrollTo({ top: 0, behavior: 'smooth' }); };
+var go = function (id) { self.setState({ open: id, yteam: 0 }); try { history.replaceState(null, '', id ? 'jugend.html?open=' + id : 'jugend.html'); } catch (e) {} window.scrollTo({ top: 0, behavior: 'smooth' }); };
 var idx = -1;
 defs.forEach(function (d, i) { if (d.id === s.open) idx = i; });
 var sel = idx >= 0 ? defs[idx] : null;
@@ -319,12 +329,20 @@ return { label: p.label, on: on ? 'true' : 'false', style: pill + (on ? 'backgro
 var cards = defs.map(function (d) { return { letter: d.letter, name: d.name, liga: d.liga, badge: d.badge, pick: function () { go(d.id); } }; });
 var nb = function (i) { var d = defs[(i + defs.length) % defs.length]; return { label: d.name, pick: function () { go(d.id); } }; };
 var FD = window.FAL_FD || {};
-var yw = (sel ? yteams[sel.id] : []).map(function (t, i, arr) {
+var tlist = sel ? yteams[sel.id] : [];
+var yi = Math.min(parseInt(s.yteam, 10) || 0, Math.max(tlist.length - 1, 0));
+var multi = tlist.length > 1;
+var ypills = tlist.map(function (t, i) {
+var on = i === yi;
+return { label: (i + 1) + '. Mannschaft', on: on ? 'true' : 'false', style: 'border: none; border-radius: 999px; padding: 9px 16px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color .25s, color .25s; ' + (on ? 'background: #1e3e62; color: #ffffff;' : 'background: #f2f5f9; color: #51607a;'), pick: function () { self.setState({ yteam: i }); } };
+});
+var yw = tlist.length ? [tlist[yi]].map(function (t) {
 var w = FD['jugend-' + t[0]] || {};
-return { label: arr.length > 1 ? t[1] : sel.name, showLabel: false, nextId: w.next ? w.next.id : '', tabId: w.tabelle ? w.tabelle.id : '' };
-}).filter(function (w) { return w.nextId || w.tabId; });
+return { label: multi ? sel.name + ' · ' + (yi + 1) + '. Mannschaft' : sel.name, nextId: w.next ? w.next.id : '', tabId: w.tabelle ? w.tabelle.id : '' };
+}) : [];
+var ywHas = yw.length && (yw[0].nextId || yw[0].tabId);
 var vals = {
-pills: pills, cards: cards, sel: sel, isOverview: !sel, yw: yw, hasYw: yw.length > 0,
+pills: pills, cards: cards, sel: sel, isOverview: !sel, yw: yw, hasYw: !!ywHas || multi, ywEmpty: multi && !ywHas, ypills: ypills, multi: multi,
 heroTag: sel ? sel.liga : 'A- bis E-Jugend',
 heroTitle: sel ? sel.name : 'Unsere Jugend',
 heroText: sel ? sel.text : 'A- bis C-Jugend spielen als SG F.A.L. mit unseren Nachbarvereinen, D- und E-Jugend komplett bei der SpVgg F.A.L. Wähl deine Altersklasse für Training, Trainer und Teamfoto.',
@@ -362,7 +380,7 @@ iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cu
 });
 var drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px); background: #ffffff; z-index: 50; box-shadow: -20px 0 50px rgba(11,25,44,.25); display: flex; flex-direction: column; overflow-y: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear ' + (dOpen ? '0s; transform: none; visibility: visible;' : '.45s; transform: translateX(100%); visibility: hidden;');
 var overlayStyle = 'position: fixed; inset: 0; border: none; padding: 0; margin: 0; z-index: 45; background: rgba(11,25,44,.55); cursor: pointer; transition: opacity .35s, visibility 0s linear ' + (dOpen ? '0s; opacity: 1; visibility: visible;' : '.35s; opacity: 0; visibility: hidden;');
-return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, yw: vals.yw, hasYw: vals.hasYw, pills: vals.pills, cards: vals.cards, sel: vals.sel, isOverview: vals.isOverview, heroTag: vals.heroTag, heroTitle: vals.heroTitle, heroText: vals.heroText, heroPhoto: vals.heroPhoto, ctaTitle: vals.ctaTitle, leitung: vals.leitung, jnews: vals.jnews, trainer: vals.trainer, prev: vals.prev, next: vals.next };
+return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, yw: vals.yw, hasYw: vals.hasYw, ywEmpty: vals.ywEmpty, ypills: vals.ypills, multi: vals.multi, pills: vals.pills, cards: vals.cards, sel: vals.sel, isOverview: vals.isOverview, heroTag: vals.heroTag, heroTitle: vals.heroTitle, heroText: vals.heroText, heroPhoto: vals.heroPhoto, ctaTitle: vals.ctaTitle, leitung: vals.leitung, jnews: vals.jnews, trainer: vals.trainer, prev: vals.prev, next: vals.next };
 }
 }
 </script>
