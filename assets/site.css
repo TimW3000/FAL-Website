@@ -1,0 +1,20 @@
+/* Gemeinsame Stile der Vorschau (zusätzlich zu den Stilen in den Seiten) */
+
+/* ---------- Sponsorenleiste (läuft durch) ---------- */
+.spons{background:#ffffff;border-top:1px solid #e3e9f1;padding:30px 0 34px}
+.spons__head{max-width:1240px;margin:0 auto 18px;padding:0 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+.spons__title{display:flex;align-items:center;gap:12px;font-weight:800;font-size:15px;letter-spacing:1.6px;text-transform:uppercase;color:#1e3e62}
+.spons__title::before{content:"";width:10px;height:20px;background:#ffc800;transform:skewX(-14deg)}
+.spons__link{font-weight:700;font-size:14px;color:#1e3e62}
+.spons__viewport{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
+.spons__track{display:flex;gap:18px;width:max-content;animation:sponsRun 38s linear infinite}
+.spons:hover .spons__track,.spons:focus-within .spons__track{animation-play-state:paused}
+.spons__item{flex:none;width:190px;height:88px;border-radius:12px;border:1px solid #e3e9f1;background:#ffffff;display:flex;align-items:center;justify-content:center;color:#8a97ab;font-size:13px;font-weight:700;text-decoration:none;transition:border-color .25s,box-shadow .25s,transform .25s}
+.spons__item:hover{border-color:#ffc800;box-shadow:0 10px 24px rgba(11,25,44,.10);transform:translateY(-2px)}
+.spons__item img{max-width:78%;max-height:62%;object-fit:contain;filter:grayscale(1);opacity:.75;transition:filter .25s,opacity .25s}
+.spons__item:hover img{filter:none;opacity:1}
+@keyframes sponsRun{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+@media (prefers-reduced-motion: reduce){
+  .spons__track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;padding:0 24px}
+  .spons__track [aria-hidden="true"]{display:none}
+}
