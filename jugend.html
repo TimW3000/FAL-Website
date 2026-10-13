@@ -201,6 +201,32 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 </div>
 
+<sc-if value="{{ hasYw }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top: 22px; display: flex; flex-direction: column; gap: 22px">
+<sc-for list="{{ yw }}" as="w" hint-placeholder-count="1">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<sc-if value="{{ w.showLabel }}" hint-placeholder-val="{{ false }}">
+<span style="font-weight: 800; font-size: 18px; color: #1e3e62">{{ w.label }}</span>
+</sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
+<sc-if value="{{ w.nextId }}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1 1 420px; min-width: 0; background: #ffffff; border-radius: 18px; border: 1px solid #e8edf4; box-shadow: 0 10px 30px rgba(11,25,44,.10); overflow: hidden">
+<div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; font-weight: 800; font-size: 15px"><span style="color: #ffc800">Nächste Spiele</span> · {{ w.label }}</div>
+<div class="fal-fd" data-dc-keep data-compact data-height="420" data-id="{{ w.nextId }}" data-type="next-match" data-title="Nächste Spiele {{ w.label }}"></div>
+</div>
+</sc-if>
+<sc-if value="{{ w.tabId }}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1 1 420px; min-width: 0; background: #ffffff; border-radius: 18px; border: 1px solid #e8edf4; box-shadow: 0 10px 30px rgba(11,25,44,.10); overflow: hidden">
+<div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; font-weight: 800; font-size: 15px"><span style="color: #ffc800">Tabelle</span> · {{ w.label }}</div>
+<div class="fal-fd" data-dc-keep data-compact data-height="520" data-id="{{ w.tabId }}" data-type="table" data-title="Tabelle {{ w.label }}"></div>
+</div>
+</sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
 <div style="margin-top: 22px; height: clamp(220px, 34vw, 440px); border-radius: 20px; background: linear-gradient(135deg, #e3e9f1 0%, #f2f5f9 100%); display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 15px; font-weight: 700">[Teamfoto {{ sel.name }}]</div>
 
 <div style="margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px">
@@ -280,6 +306,7 @@ var defs = [
 { id: 'd', letter: 'D', name: 'D-Jugend', badge: 'SpVgg F.A.L.', liga: 'Bezirksliga', text: 'Die D-Jugend spielt komplett bei uns im Verein. [Ein, zwei Sätze zum Team.]' },
 { id: 'e', letter: 'E', name: 'E-Jugend', badge: 'SpVgg F.A.L.', liga: 'Bezirksturniere', text: 'Bei der E-Jugend steht der Spaß am Ball im Mittelpunkt, gespielt wird in Turnieren. [Ein, zwei Sätze zum Team.]' }
 ];
+var yteams = { a: [['a', 'A-Jugend']], b: [['b1', 'B-Jugend 1'], ['b2', 'B-Jugend 2']], c: [['c', 'C-Jugend']], d: [['d1', 'D-Jugend 1'], ['d2', 'D-Jugend 2']], e: [['e1', 'E-Jugend 1'], ['e2', 'E-Jugend 2']] };
 var go = function (id) { self.setState({ open: id }); try { history.replaceState(null, '', id ? 'jugend.html?open=' + id : 'jugend.html'); } catch (e) {} window.scrollTo({ top: 0, behavior: 'smooth' }); };
 var idx = -1;
 defs.forEach(function (d, i) { if (d.id === s.open) idx = i; });
@@ -291,8 +318,13 @@ return { label: p.label, on: on ? 'true' : 'false', style: pill + (on ? 'backgro
 });
 var cards = defs.map(function (d) { return { letter: d.letter, name: d.name, liga: d.liga, badge: d.badge, pick: function () { go(d.id); } }; });
 var nb = function (i) { var d = defs[(i + defs.length) % defs.length]; return { label: d.name, pick: function () { go(d.id); } }; };
+var FD = window.FAL_FD || {};
+var yw = (sel ? yteams[sel.id] : []).map(function (t, i, arr) {
+var w = FD['jugend-' + t[0]] || {};
+return { label: arr.length > 1 ? t[1] : sel.name, showLabel: false, nextId: w.next ? w.next.id : '', tabId: w.tabelle ? w.tabelle.id : '' };
+}).filter(function (w) { return w.nextId || w.tabId; });
 var vals = {
-pills: pills, cards: cards, sel: sel, isOverview: !sel,
+pills: pills, cards: cards, sel: sel, isOverview: !sel, yw: yw, hasYw: yw.length > 0,
 heroTag: sel ? sel.liga : 'A- bis E-Jugend',
 heroTitle: sel ? sel.name : 'Unsere Jugend',
 heroText: sel ? sel.text : 'A- bis C-Jugend spielen als SG F.A.L. mit unseren Nachbarvereinen, D- und E-Jugend komplett bei der SpVgg F.A.L. Wähl deine Altersklasse für Training, Trainer und Teamfoto.',
@@ -330,7 +362,7 @@ iconStyle: 'display: inline-block; font-size: 13px; transition: transform .3s cu
 });
 var drawerStyle = 'position: fixed; top: 0; right: 0; bottom: 0; width: min(86vw, 360px); background: #ffffff; z-index: 50; box-shadow: -20px 0 50px rgba(11,25,44,.25); display: flex; flex-direction: column; overflow-y: auto; transition: transform .45s cubic-bezier(.2,.8,.2,1), visibility 0s linear ' + (dOpen ? '0s; transform: none; visibility: visible;' : '.45s; transform: translateX(100%); visibility: hidden;');
 var overlayStyle = 'position: fixed; inset: 0; border: none; padding: 0; margin: 0; z-index: 45; background: rgba(11,25,44,.55); cursor: pointer; transition: opacity .35s, visibility 0s linear ' + (dOpen ? '0s; opacity: 1; visibility: visible;' : '.35s; opacity: 0; visibility: hidden;');
-return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, pills: vals.pills, cards: vals.cards, sel: vals.sel, isOverview: vals.isOverview, heroTag: vals.heroTag, heroTitle: vals.heroTitle, heroText: vals.heroText, heroPhoto: vals.heroPhoto, ctaTitle: vals.ctaTitle, leitung: vals.leitung, jnews: vals.jnews, trainer: vals.trainer, prev: vals.prev, next: vals.next };
+return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDrawer: function () { self.setState({ drawer: true }); }, closeDrawer: function () { self.setState({ drawer: false }); }, drawerStyle: drawerStyle, overlayStyle: overlayStyle, menu: menu, yw: vals.yw, hasYw: vals.hasYw, pills: vals.pills, cards: vals.cards, sel: vals.sel, isOverview: vals.isOverview, heroTag: vals.heroTag, heroTitle: vals.heroTitle, heroText: vals.heroText, heroPhoto: vals.heroPhoto, ctaTitle: vals.ctaTitle, leitung: vals.leitung, jnews: vals.jnews, trainer: vals.trainer, prev: vals.prev, next: vals.next };
 }
 }
 </script>

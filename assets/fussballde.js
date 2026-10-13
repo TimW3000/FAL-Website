@@ -21,6 +21,9 @@
       tabelle: { id: 'f619013b-2e7b-47b1-92f8-cebcf841ac1f', type: 'table' },
       next: { id: '200ef7f7-825e-4835-a589-9b8c37cc3615', type: 'next-match' }
     },
+    /* Jugend: Schlüssel jugend-a, jugend-b1, jugend-b2, jugend-c, jugend-d1, jugend-d2, jugend-e1, jugend-e2
+       je mit next (Nächste Spiele) und/oder tabelle, z. B.
+       'jugend-a': { next: { id: '…', type: 'next-match' }, tabelle: { id: '…', type: 'table' } }, */
     verein: { spielplan: { id: 'd48ef382-b58d-4732-b141-76d352c8281a', type: 'club-matches' } },
     erste: {
       spielplan: { id: '66e66124-5800-41f1-b90b-bc45a18bf2da', type: 'team-matches' },
