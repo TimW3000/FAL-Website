@@ -139,19 +139,21 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 </section>
 
-<section style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 0">
-<h2 style="margin: 0 0 24px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Jugendleitung</h2>
+<section style="position: relative; margin-top: 72px; background: #1e3e62; color: #ffffff; clip-path: polygon(0 48px, 100% 0, 100% calc(100% - 48px), 0 100%)">
+<div style="max-width: 1240px; margin: 0 auto; padding: 104px 24px 104px">
+<h2 style="margin: 0 0 24px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 30px; letter-spacing: -0.8px; color: #ffffff"><span aria-hidden="true" style="width: 13px; height: 30px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Jugendleitung</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 18px">
 <sc-for list="{{ leitung }}" as="p" hint-placeholder-count="2">
-<div style="flex: 1 1 280px; max-width: 400px; background: #f2f5f9; border-radius: 18px; padding: 22px; display: flex; align-items: center; gap: 18px">
-<span style="flex: none; width: 72px; height: 72px; border-radius: 50%; background: #ffffff; border: 3px solid #ffc800; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#9fb0c6" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
+<div style="flex: 1 1 280px; max-width: 400px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: #ffffff; border-radius: 18px; padding: 22px; display: flex; align-items: center; gap: 18px">
+<span style="flex: none; width: 72px; height: 72px; border-radius: 50%; background: #2a4d74; border: 3px solid #ffc800; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#9fb0c6" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></span>
 <span style="display: flex; flex-direction: column; gap: 4px; min-width: 0">
-<span style="font-size: 13px; font-weight: 800; color: #8a6d00">{{ p.role }}</span>
+<span style="font-size: 13px; font-weight: 800; color: #ffc800">{{ p.role }}</span>
 <span style="font-weight: 800; font-size: 18px">{{ p.name }}</span>
-<a href="kontakt.html" style="font-size: 14px; font-weight: 700; color: #1e3e62">Kontakt</a>
+<a href="kontakt.html" style="font-size: 14px; font-weight: 700; color: #c3cfde">Kontakt</a>
 </span>
 </div>
 </sc-for>
+</div>
 </div>
 </section>
 
@@ -162,8 +164,8 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px">
 <sc-for list="{{ jnews }}" as="n" hint-placeholder-count="3">
-<a href="news-beitrag.html" class="ycard" style="text-decoration: none; color: #0b192c; display: flex; flex-direction: column; gap: 10px; border-radius: 16px">
-<span style="height: 180px; border-radius: 16px; background: #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Beitragsfoto]</span>
+<a href="news-beitrag.html" class="ycard" style="text-decoration: none; color: #0b192c; display: flex; flex-direction: column; gap: 10px; border-radius: 18px">
+<span style="height: 180px; border-radius: 18px; background: #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Beitragsfoto]</span>
 <span style="font-size: 12px; font-weight: 800; color: #8a6d00">{{ n.tag }}</span>
 <span style="font-weight: 800; font-size: 18px; line-height: 1.3">[Überschrift des Beitrags]</span>
 <span style="font-size: 13px; color: #51607a">[Datum]</span>
@@ -221,8 +223,8 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start">
 <sc-if value="{{ w.nextId }}" hint-placeholder-val="{{ false }}">
 <div style="flex: 1 1 420px; min-width: 0; background: #ffffff; border-radius: 18px; border: 1px solid #e8edf4; box-shadow: 0 10px 30px rgba(11,25,44,.10); overflow: hidden">
-<div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; font-weight: 800; font-size: 15px"><span style="color: #ffc800">Nächste Spiele</span> · {{ w.label }}</div>
-<div class="fal-fd" data-dc-keep data-compact data-height="420" data-id="{{ w.nextId }}" data-type="next-match" data-title="Nächste Spiele {{ w.label }}"></div>
+<div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; font-weight: 800; font-size: 15px"><span style="color: #ffc800">Nächstes Spiel</span> · {{ w.label }}</div>
+<div class="fal-fd" data-dc-keep data-compact data-id="{{ w.nextId }}" data-type="next-match" data-title="Nächstes Spiel {{ w.label }}"></div>
 </div>
 </sc-if>
 <sc-if value="{{ w.tabId }}" hint-placeholder-val="{{ false }}">
@@ -237,7 +239,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 </sc-if>
 
-<div style="margin-top: 22px; height: clamp(220px, 34vw, 440px); border-radius: 20px; background: linear-gradient(135deg, #e3e9f1 0%, #f2f5f9 100%); display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 15px; font-weight: 700">[Teamfoto {{ sel.name }}]</div>
+<div style="margin-top: 22px; height: clamp(220px, 34vw, 440px); border-radius: 18px; background: linear-gradient(135deg, #e3e9f1 0%, #f2f5f9 100%); display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 15px; font-weight: 700">[Teamfoto {{ sel.name }}]</div>
 
 <div style="margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px">
 <button type="button" onClick="{{ prev.pick }}" class="btn" style="border: 2px solid #e3e9f1; background: #ffffff; color: #1e3e62; font-family: inherit; font-weight: 800; font-size: 15px; padding: 12px 20px; border-radius: 12px; cursor: pointer">← {{ prev.label }}</button>
@@ -385,6 +387,6 @@ return { drawerMenu: drawerMenu, drawerOpenStr: dOpen ? 'true' : 'false', openDr
 }
 </script>
 
-<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" title="Vorschau der neuen Website. Inhalte sind Platzhalter. Impressum: spvgg-fal.de" style="position:fixed;right:12px;bottom:12px;z-index:40;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(11,25,44,.78);color:#ffffff;font:700 11px/1.2 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.3px;text-decoration:none;opacity:.75"><span style="width:6px;height:6px;border-radius:50%;background:#ffc800"></span>VORSCHAU</a>
 </body>
 </html>

@@ -52,7 +52,7 @@
     f.name = rid() + '_fussballde_widget-' + id;
     f.title = box.getAttribute('data-title') || 'fussball.de';
     f.loading = 'lazy';
-    f.setAttribute('style', 'display:block;width:100%;border:0;background:#ffffff;' + (box.getAttribute('data-height') ? 'height:' + parseInt(box.getAttribute('data-height'), 10) + 'px' : (box.hasAttribute('data-compact') ? 'height:180px' : 'height:520px;border-radius:16px')));
+    f.setAttribute('style', 'display:block;width:100%;border:0;background:#ffffff;' + (box.getAttribute('data-height') ? 'height:' + parseInt(box.getAttribute('data-height'), 10) + 'px' : (box.hasAttribute('data-compact') ? 'height:180px' : 'height:520px;border-radius:18px')));
     box.appendChild(f);
     box.setAttribute('data-fd-state', 'loaded');
   }
@@ -74,7 +74,7 @@
     var label = box.getAttribute('data-type') === 'table' ? 'Tabelle laden' : 'Spielplan laden';
     box.setAttribute('data-fd-state', 'ask');
     box.innerHTML =
-      '<div style="background:#f2f5f9;border-radius:20px;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:36px;box-sizing:border-box;text-align:center">' +
+      '<div style="background:#f2f5f9;border-radius:18px;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:36px;box-sizing:border-box;text-align:center">' +
       '<span style="font-weight:800;font-size:20px;color:#1e3e62"></span>' +
       '<span style="font-size:15px;line-height:1.5;color:#51607a;max-width:480px">Spiele und Ergebnisse kommen direkt von fussball.de. Beim Laden werden Daten wie deine IP-Adresse an fussball.de übertragen.</span>' +
       '<span style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center">' +
@@ -88,7 +88,8 @@
     if (box.getAttribute('data-fd-state')) { return; }
     /* Noch nicht ausgefüllte Vorlage (enthält {{ … }}) nicht anfassen */
     if (box.closest('x-dc') || (box.getAttribute('data-id') || '').indexOf('{{') >= 0) { return; }
-    if (allowed()) { mount(box); } else { consent(box); }
+    var needConsent = !!(window.FAL_CONFIG && window.FAL_CONFIG.fdConsent);
+    if (!needConsent || allowed()) { mount(box); } else { consent(box); }
   }
   function scan() { Array.prototype.forEach.call(document.querySelectorAll('.fal-fd'), init); }
 

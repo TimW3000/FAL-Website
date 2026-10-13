@@ -56,7 +56,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 
 <header class="hdr" style="position: sticky; top: 0; z-index: 20; height: 88px; margin-bottom: -88px; background: #ffffff; box-shadow: 0 2px 16px rgba(11,25,44,.1)">
 <div style="max-width: 1240px; height: 100%; margin: 0 auto; padding: 0 24px; display: flex; align-items: stretch; justify-content: space-between; gap: 24px">
-<a class="hlogo" href="#" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0b192c">
+<a class="hlogo" href="index.html" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: #0b192c">
 <img src="assets/wappen.webp" alt="Wappen der SpVgg F.A.L." style="width: 50px; height: 56px; object-fit: contain">
 <span style="font-weight: 800; font-size: 21px; letter-spacing: -0.3px; color: #1e3e62">SpVgg F.A.L.</span>
 </a>
@@ -137,7 +137,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px">
 <sc-for list="{{ matches }}" as="m" hint-placeholder-count="3">
 <sc-if value="{{ m.fdId }}" hint-placeholder-val="{{ false }}">
-<div style="background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; overflow: hidden; display: flex; flex-direction: column">
+<div style="background: #ffffff; border-radius: 18px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; overflow: hidden; display: flex; flex-direction: column">
 <a href="{{ m.href }}" style="background: #1e3e62; color: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; text-decoration: none">
 <span>{{ m.team }}</span><span style="color: #ffc800">{{ m.liga }}</span>
 </a>
@@ -145,7 +145,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 </sc-if>
 <sc-if value="{{ m.noFd }}" hint-placeholder-val="{{ true }}">
-<a class="card" href="{{ m.href }}" style="background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; text-decoration: none; color: #0b192c; overflow: hidden; display: flex; flex-direction: column">
+<a class="card" href="{{ m.href }}" style="background: #ffffff; border-radius: 18px; box-shadow: 0 10px 30px rgba(11,25,44,.12); border: 1px solid #e8edf4; text-decoration: none; color: #0b192c; overflow: hidden; display: flex; flex-direction: column">
 <div style="background: #1e3e62; color: #ffffff; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; font-weight: 700">
 <span>{{ m.team }}</span><span style="color: #ffc800">{{ m.liga }}</span>
 </div>
@@ -177,7 +177,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <sc-if value="{{ showNews }}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; flex-wrap: wrap; gap: 24px">
 <a class="zoom" href="news-beitrag.html" style="flex: 3 1 520px; min-width: 0; text-decoration: none; color: #0b192c; display: flex; flex-direction: column; gap: 16px">
-<div style="height: 360px; border-radius: 16px; overflow: hidden; position: relative">
+<div style="height: 360px; border-radius: 18px; overflow: hidden; position: relative">
 <div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-weight: 600; font-size: 14px">[Großes Beitragsfoto]</div>
 <span style="position: absolute; left: 18px; top: 18px; background: #1e3e62; color: #ffffff; font-size: 13px; font-weight: 800; padding: 6px 14px; transform: skewX(-12deg)"><span style="display: inline-block; transform: skewX(12deg)">1. Mannschaft</span></span>
 </div>
@@ -203,12 +203,12 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <div style="display: flex; flex-direction: column; gap: 18px">
 <p style="margin: 0; font-size: 16px; color: #51607a">Die neuesten Beiträge von unserem Instagram-Kanal.</p>
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px">
-<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
-<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
-<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
-<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
-<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
-<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
+<a class="zoom" href="#" style="aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; position: relative; text-decoration: none"><div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 13px; font-weight: 600">[Instagram-Beitrag]</div></a>
 </div>
 </div>
 </sc-if>
@@ -229,24 +229,24 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <div style="max-width: 1240px; margin: 0 auto; padding: 120px 24px 130px">
 <h2 style="margin: 0 0 28px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Unsere Teams</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px">
-<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 18px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
 <div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
 <div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">1. Mannschaft</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Landesliga</span></div>
 </a>
-<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 18px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
 <div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
 <div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">2. Mannschaft</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Kreisliga A</span></div>
 </a>
-<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 18px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
 <div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
 <div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">3. Mannschaft</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Kreisliga C</span></div>
 </a>
-<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
+<a class="zoom card" href="mannschaft.html" style="position: relative; height: 300px; border-radius: 18px; overflow: hidden; text-decoration: none; color: #ffffff; display: flex; align-items: flex-end">
 <div class="ph" style="position: absolute; inset: 0; background: #2f5683; display: flex; align-items: center; justify-content: center; color: #9fb6d1; font-size: 13px; font-weight: 600">[Teamfoto]</div>
 <div style="position: relative; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(11,25,44,.9)); display: flex; flex-direction: column; gap: 4px"><span style="font-weight: 800; font-size: 21px">Alte Herren</span><span style="font-size: 14px; color: #ffc800; font-weight: 700">Turniere</span></div>
 </a>
 </div>
-<a class="zoom" href="jugend.html" style="margin-top: 16px; position: relative; min-height: 200px; border-radius: 16px; overflow: hidden; text-decoration: none; color: #0b192c; display: flex; flex-wrap: wrap; align-items: center; background: #ffc800">
+<a class="zoom" href="jugend.html" style="margin-top: 16px; position: relative; min-height: 200px; border-radius: 18px; overflow: hidden; text-decoration: none; color: #0b192c; display: flex; flex-wrap: wrap; align-items: center; background: #ffc800">
 <div style="flex: 1 1 360px; padding: 32px; display: flex; flex-direction: column; gap: 10px">
 <span style="font-weight: 800; font-size: 30px; letter-spacing: -0.6px">Jugend von A bis E</span>
 <span style="font-size: 16px; line-height: 1.6; max-width: 480px">Trainingszeiten, Trainer und Probetraining von der A- bis zur E-Jugend auf einen Blick.</span>
@@ -259,14 +259,14 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <section style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 0">
 <h2 style="margin: 0 0 26px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>Unsere Partner</h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px">
-<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
-<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
-<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
-<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
-<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
-<div class="spon" style="height: 100px; border-radius: 14px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 12px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 12px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 12px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 12px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 12px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
+<div class="spon" style="height: 100px; border-radius: 12px; border: 1px solid #e3e9f1; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 700">[Logo]</div>
 </div>
-<div style="margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; background: #f2f5f9; border-radius: 14px; padding: 22px 26px">
+<div style="margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; background: #f2f5f9; border-radius: 12px; padding: 22px 26px">
 <span style="font-weight: 700; font-size: 17px">Sie möchten den Verein unterstützen?</span>
 <a class="btn" href="partner.html" style="background: #1e3e62; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 15px; padding: 13px 22px; border-radius: 10px">Partner werden</a>
 </div>
@@ -408,6 +408,6 @@ newsLinkLabel: (this.props.newsMode || 'Aktuelle News vorhanden') === 'Aktuelle 
 }
 </script>
 
-<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" title="Vorschau der neuen Website. Inhalte sind Platzhalter. Impressum: spvgg-fal.de" style="position:fixed;right:12px;bottom:12px;z-index:40;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(11,25,44,.78);color:#ffffff;font:700 11px/1.2 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.3px;text-decoration:none;opacity:.75"><span style="width:6px;height:6px;border-radius:50%;background:#ffc800"></span>VORSCHAU</a>
 </body>
 </html>

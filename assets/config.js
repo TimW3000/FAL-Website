@@ -5,7 +5,9 @@
 (function () {
   'use strict';
   window.FAL_CONFIG = {
-    teamshop: ''
+    teamshop: '',
+    /* true = fussball.de-Widgets erst nach Klick laden (Zwei-Klick-Lösung), false = sofort laden */
+    fdConsent: false
   };
 
   /* Werte, die jede Seite in ihren Vorlagen als {{ … }} nutzen kann */

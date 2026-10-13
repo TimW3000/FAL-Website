@@ -111,7 +111,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px 24px">
 <sc-for list="{{ items }}" as="n" hint-placeholder-count="6">
 <a class="zoom swap" href="news-beitrag.html" style="{{ n.style }}">
-<div style="aspect-ratio: 16 / 10; border-radius: 16px; overflow: hidden; position: relative">
+<div style="aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; position: relative">
 <div class="ph" style="position: absolute; inset: 0; background: #dfe6ef; display: flex; align-items: center; justify-content: center; color: #51607a; font-size: 14px; font-weight: 600">[Beitragsfoto]</div>
 <span style="{{ n.tagStyle }}"><span style="display: inline-block; transform: skewX(12deg)">{{ n.cat }}</span></span>
 </div>
@@ -131,7 +131,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <div class="swap" style="background: #f2f5f9; border-radius: 22px; padding: 56px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
 <span style="font-weight: 800; font-size: 22px">Hier gibt es noch keine Beiträge</span>
 <span style="max-width: 420px; font-size: 15px; line-height: 1.6; color: #51607a">Aktuelles aus dieser Mannschaft findest du solange auf unserem Instagram-Kanal.</span>
-<a class="btn" href="#" style="margin-top: 6px; background: #1e3e62; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 15px; padding: 13px 22px; border-radius: 10px">Zu Instagram</a>
+<a class="btn" href="https://www.instagram.com/" target="_blank" rel="noopener" style="margin-top: 6px; background: #1e3e62; color: #ffffff; text-decoration: none; font-weight: 800; font-size: 15px; padding: 13px 22px; border-radius: 10px">Zu Instagram</a>
 </div>
 </sc-if>
 </section>
@@ -235,6 +235,6 @@ loadMore: function () { self.setState({ shown: self.state.shown + 6 }); } });
 }
 </script>
 
-<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" title="Vorschau der neuen Website. Inhalte sind Platzhalter. Impressum: spvgg-fal.de" style="position:fixed;right:12px;bottom:12px;z-index:40;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(11,25,44,.78);color:#ffffff;font:700 11px/1.2 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.3px;text-decoration:none;opacity:.75"><span style="width:6px;height:6px;border-radius:50%;background:#ffc800"></span>VORSCHAU</a>
 </body>
 </html>

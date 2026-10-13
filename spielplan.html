@@ -139,7 +139,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 </sc-if>
 <sc-if value="{{ showTablePlaceholder }}" hint-placeholder-val="{{ false }}">
-<div style="flex: 1 1 360px; min-width: 0; min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center">
+<div style="flex: 1 1 360px; min-width: 0; min-height: 420px; border-radius: 18px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center">
 <span style="font-weight: 800; font-size: 18px; color: #1e3e62">Tabelle {{ sel.liga }}</span>
 <span style="font-size: 14px; color: #51607a">fussball.de-Widget</span>
 </div>
@@ -250,12 +250,12 @@ var fdTab = sel.kind === 'liga' ? (fdSel.tabelle || null) : null;
 return Object.assign(base, { groups: groups, sel: sel, pickVerein: function () { self.setState({ team: 'verein' }); },
 planTitle: isVerein ? 'Vereinsspielplan: alle Spiele aller Mannschaften' : (sel.kind === 'turnier' ? 'Turniertermine ' + sel.name : 'Spielplan ' + sel.name),
 fdId: fd ? fd.id : '', fdType: fd ? fd.type : '', noFd: !fd,
-planStyle: 'flex: ' + (sel.kind === 'liga' ? '1.4 1 480px' : '1 1 100%') + '; min-width: 0; ' + (fd ? '' : 'min-height: 420px; border-radius: 20px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center'),
+planStyle: 'flex: ' + (sel.kind === 'liga' ? '1.4 1 480px' : '1 1 100%') + '; min-width: 0; ' + (fd ? '' : 'min-height: 420px; border-radius: 18px; border: 2px dashed #b9c6d6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 28px; box-sizing: border-box; text-align: center'),
 showTable: sel.kind === 'liga', tabId: fdTab ? fdTab.id : '', tabType: fdTab ? fdTab.type : '', showTablePlaceholder: sel.kind === 'liga' && !fdTab, isTurnier: sel.kind === 'turnier' });
 }
 }
 </script>
 
-<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" title="Vorschau der neuen Website. Inhalte sind Platzhalter. Impressum: spvgg-fal.de" style="position:fixed;right:12px;bottom:12px;z-index:40;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(11,25,44,.78);color:#ffffff;font:700 11px/1.2 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.3px;text-decoration:none;opacity:.75"><span style="width:6px;height:6px;border-radius:50%;background:#ffc800"></span>VORSCHAU</a>
 </body>
 </html>

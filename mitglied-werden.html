@@ -108,18 +108,18 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 <section id="antrag" style="max-width: 1240px; margin: 0 auto; padding: 72px 24px 0">
 <h2 style="margin: 0 0 30px; display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 34px; letter-spacing: -0.8px; color: #1e3e62"><span aria-hidden="true" style="width: 14px; height: 34px; background: #ffc800; transform: skewX(-14deg); display: inline-block"></span>In drei Schritten dabei</h2>
 <ol style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px">
-<li style="position: relative; background: #f2f5f9; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<li style="position: relative; background: #f2f5f9; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
 <span style="width: 52px; height: 52px; border-radius: 50%; background: #1e3e62; color: #ffc800; font-weight: 800; font-size: 22px; display: flex; align-items: center; justify-content: center">1</span>
 <span style="font-weight: 800; font-size: 20px">Antrag herunterladen</span>
 <span style="font-size: 15px; line-height: 1.6; color: #51607a">[Kurze Erklärung zum Aufnahmeantrag.]</span>
 <a class="btn" href="#" style="align-self: flex-start; margin-top: 4px; background: #ffc800; color: #0b192c; text-decoration: none; font-weight: 800; font-size: 14px; padding: 12px 18px; border-radius: 10px">Aufnahmeantrag (PDF)</a>
 </li>
-<li style="position: relative; background: #f2f5f9; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<li style="position: relative; background: #f2f5f9; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
 <span style="width: 52px; height: 52px; border-radius: 50%; background: #1e3e62; color: #ffc800; font-weight: 800; font-size: 22px; display: flex; align-items: center; justify-content: center">2</span>
 <span style="font-weight: 800; font-size: 20px">Ausfüllen und unterschreiben</span>
 <span style="font-size: 15px; line-height: 1.6; color: #51607a">[Hinweis: bei Minderjährigen unterschreiben die Eltern, SEPA-Mandat für den Beitrag.]</span>
 </li>
-<li style="position: relative; background: #f2f5f9; border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
+<li style="position: relative; background: #f2f5f9; border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 12px">
 <span style="width: 52px; height: 52px; border-radius: 50%; background: #1e3e62; color: #ffc800; font-weight: 800; font-size: 22px; display: flex; align-items: center; justify-content: center">3</span>
 <span style="font-weight: 800; font-size: 20px">Abgeben</span>
 <span style="font-size: 15px; line-height: 1.6; color: #51607a">[Wo abgeben: beim Trainer, im Vereinsheim oder per Post an die Geschäftsstelle.]</span>
@@ -138,7 +138,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px">
 <sc-for list="{{ fees }}" as="f" hint-placeholder-count="4">
-<div class="price" style="border: 2px solid #e3e9f1; border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 10px">
+<div class="price" style="border: 2px solid #e3e9f1; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px">
 <span style="font-weight: 800; font-size: 19px">{{ f.title }}</span>
 <span style="font-size: 14px; color: #51607a">{{ f.desc }}</span>
 <span style="margin-top: 12px; font-weight: 800; font-size: 34px; letter-spacing: -1px; color: #1e3e62">[Betrag] €</span>
@@ -263,6 +263,6 @@ return Object.assign(base, { periods: periods, fees: fees, faqs: faqs });
 }
 </script>
 
-<a href="https://spvgg-fal.de" target="_blank" rel="noopener" style="position:fixed;left:16px;bottom:16px;z-index:40;display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;background:#0b192c;color:#ffffff;font:600 13px/1.2 'Plus Jakarta Sans',Arial,sans-serif;text-decoration:none;box-shadow:0 8px 24px rgba(11,25,44,.3)"><span style="width:8px;height:8px;border-radius:50%;background:#ffc800"></span>Vorschau &middot; Inhalte sind Platzhalter &middot; Impressum: spvgg-fal.de</a>
+<a href="https://spvgg-fal.de" target="_blank" rel="noopener" title="Vorschau der neuen Website. Inhalte sind Platzhalter. Impressum: spvgg-fal.de" style="position:fixed;right:12px;bottom:12px;z-index:40;display:flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;background:rgba(11,25,44,.78);color:#ffffff;font:700 11px/1.2 'Plus Jakarta Sans',Arial,sans-serif;letter-spacing:.3px;text-decoration:none;opacity:.75"><span style="width:6px;height:6px;border-radius:50%;background:#ffc800"></span>VORSCHAU</a>
 </body>
 </html>
