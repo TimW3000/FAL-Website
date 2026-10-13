@@ -49,7 +49,7 @@
     f.name = rid() + '_fussballde_widget-' + id;
     f.title = box.getAttribute('data-title') || 'fussball.de';
     f.loading = 'lazy';
-    f.setAttribute('style', 'display:block;width:100%;border:0;background:#ffffff;' + (box.hasAttribute('data-compact') ? 'height:180px' : 'height:520px;border-radius:16px'));
+    f.setAttribute('style', 'display:block;width:100%;border:0;background:#ffffff;' + (box.getAttribute('data-height') ? 'height:' + parseInt(box.getAttribute('data-height'), 10) + 'px' : (box.hasAttribute('data-compact') ? 'height:180px' : 'height:520px;border-radius:16px')));
     box.appendChild(f);
     box.setAttribute('data-fd-state', 'loaded');
   }

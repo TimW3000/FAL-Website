@@ -113,15 +113,12 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 
 <section style="max-width: 1240px; margin: -70px auto 0; padding: 0 24px; position: relative; z-index: 2">
 <sc-if value="{{ nextId }}" hint-placeholder-val="{{ false }}">
-<div class="card" style="background: #ffffff; border-radius: 18px; box-shadow: 0 14px 36px rgba(11,25,44,.14); border: 1px solid #e8edf4; overflow: hidden; display: flex; flex-wrap: wrap">
-<div style="flex: 0 0 auto; background: #1e3e62; color: #ffffff; padding: 22px 26px; display: flex; flex-direction: column; justify-content: center; gap: 4px; min-width: 180px">
-<span style="font-size: 13px; font-weight: 700; color: #ffc800">Nächstes Spiel</span>
-<span style="font-weight: 800; font-size: 20px">{{ team.name }}</span>
-<span style="font-size: 15px; color: #c3cfde">live von fussball.de</span>
+<div class="card" style="background: #ffffff; border-radius: 18px; box-shadow: 0 14px 36px rgba(11,25,44,.14); border: 1px solid #e8edf4; overflow: hidden">
+<div style="background: #1e3e62; color: #ffffff; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px">
+<span style="font-weight: 800; font-size: 17px"><span style="color: #ffc800">Nächste Spiele</span> · {{ team.name }}</span>
+<span style="font-size: 13px; color: #c3cfde">live von fussball.de</span>
 </div>
-<div style="flex: 1 1 420px; min-width: 0">
-<div class="fal-fd" data-dc-keep data-compact data-id="{{ nextId }}" data-type="next-match" data-title="Nächstes Spiel {{ team.name }}"></div>
-</div>
+<div class="fal-fd" data-dc-keep data-compact data-height="420" data-id="{{ nextId }}" data-type="next-match" data-title="Nächste Spiele {{ team.name }}"></div>
 </div>
 </sc-if>
 <sc-if value="{{ noNextId }}" hint-placeholder-val="{{ true }}">
@@ -270,7 +267,7 @@ a{color:#1e3e62}a:hover{color:#0b192c}
 class Component extends DCLogic {
 constructor(props) {
 super(props);
-this.state = { team: 'erste', tab: 'spielplan', drawer: false, drawerSub: null };
+this.state = { team: 'erste', tab: 'tabelle', drawer: false, drawerSub: null };
 }
 renderVals() {
 var s = this.state;
@@ -290,22 +287,22 @@ var defs = [
 { id: 'dritte', label: '3. Mannschaft', name: '3. Mannschaft', short: '3. Mannschaft', liga: 'Kreisliga C', ligaTeam: true, text: '[Ein, zwei Sätze zur Dritten.]', next: mkNext('Sa, 10.10.', '17:00', 'TuS Immenstaad 3 (Flex)', 'SpVgg F.A.L. 3') },
 { id: 'ah', label: 'Alte Herren', name: 'Alte Herren', short: 'AH', liga: 'Turniere', ligaTeam: false, text: 'Die AH spielt ohne feste Liga und ist bei Turnieren in der Region dabei.', next: mkNext('[Datum]', '[Uhrzeit]', '[Turnier]', 'SpVgg F.A.L. AH', 'Turnier') }
 ];
-var team = defs.filter(function (d) { return d.id === s.team; })[0];
+var team = defs.filter(function (d) { return d.id === s.team; })[0] || defs[0];
+/* Teams ohne Liga (AH) haben keine Tabelle: dann Turniere zeigen */
+if (!team.ligaTeam && (s.tab === 'tabelle' || s.tab === 'kader')) { s.tab = 'spielplan'; }
 var pill = 'border: none; border-radius: 999px; padding: 10px 18px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color .25s, color .25s; ';
 var teams = defs.map(function (d) {
 var on = d.id === s.team;
 return { label: d.label, on: on ? 'true' : 'false',
 style: pill + (on ? 'background: #ffffff; color: #0b192c;' : 'background: rgba(255,255,255,.14); color: #ffffff;'),
 pick: function () {
-var t = self.state.tab;
-if ((t === 'tabelle' && !d.ligaTeam) || (t === 'kader' && d.id !== 'erste')) t = 'spielplan';
-self.setState({ team: d.id, tab: t });
+self.setState({ team: d.id, tab: d.ligaTeam ? 'tabelle' : 'spielplan' });
 } };
 });
 var tabDefs = team.ligaTeam
-? [{ id: 'spielplan', label: 'Spielplan' }, { id: 'tabelle', label: 'Tabelle' }, { id: 'training', label: 'Training & Trainer' }]
+? [{ id: 'tabelle', label: 'Tabelle' }, { id: 'spielplan', label: 'Spielplan' }, { id: 'training', label: 'Training & Trainer' }]
 : [{ id: 'spielplan', label: 'Turniere' }, { id: 'training', label: 'Training & Ansprechpartner' }];
-if (team.id === 'erste') tabDefs.splice(1, 0, { id: 'kader', label: 'Kader' });
+if (team.id === 'erste') tabDefs.splice(2, 0, { id: 'kader', label: 'Kader' });
 var numStyle = function (gold) { return 'position: absolute; left: 12px; top: 12px; padding: 5px 12px; font-weight: 800; font-size: 15px; transform: skewX(-12deg); ' + (gold ? 'background: #ffc800; color: #0b192c;' : 'background: #1e3e62; color: #ffffff;'); };
 var mk = function (n, role, isStaff) { var arr = []; for (var i = 0; i < n; i++) { arr.push({ num: isStaff ? role.split(' ')[0] : '[Nr.]', name: isStaff ? '[Name]' : '[Vorname Nachname]', role: role, numStyle: numStyle(!isStaff) }); } return arr; };
 var kaderDefs = [
